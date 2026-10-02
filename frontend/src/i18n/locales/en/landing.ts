@@ -192,8 +192,8 @@ export default {
 
   // Setup Wizard
   setup: {
-    title: 'Sub2API Setup',
-    description: 'Configure your Sub2API instance',
+    title: '哈呀哈基米ai Setup',
+    description: 'Configure your 哈呀哈基米ai instance',
     database: {
       title: 'Database Configuration',
       description: 'Connect to your PostgreSQL database',

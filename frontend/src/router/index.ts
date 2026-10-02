@@ -204,6 +204,12 @@ const routes: RouteRecordRaw[] = [
     }
   },
   {
+    path: '/workbuddy',
+    name: 'WorkBuddySetup',
+    component: () => import('@/views/user/WorkBuddySetupView.vue'),
+    meta: { requiresAuth: true, requiresAdmin: false, title: 'WorkBuddy' }
+  },
+  {
     path: '/keys',
     name: 'Keys',
     component: () => import('@/views/user/KeysView.vue'),

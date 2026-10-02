@@ -15,6 +15,12 @@ ARG GOPROXY=https://goproxy.cn,direct
 ARG GOSUMDB=sum.golang.google.cn
 ARG NPM_CONFIG_REGISTRY=
 
+# Build the non-resident Windows setup helper before embedding the frontend.
+FROM --platform=${BUILDPLATFORM} ${GOLANG_IMAGE} AS workbuddy-helper
+WORKDIR /helper
+COPY tools/workbuddy-setup/ ./
+RUN go test ./... && CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -trimpath -ldflags="-s -w" -o /workbuddy-setup.exe .
+
 # -----------------------------------------------------------------------------
 # Stage 1: Frontend Builder
 # -----------------------------------------------------------------------------
@@ -40,6 +46,7 @@ RUN --mount=type=cache,id=sub2api-pnpm-store,target=/root/.local/share/pnpm/stor
 # in the image (WORKDIR /app/frontend -> resolves to /app/docs/legal/*.md).
 # Copy only that subtree to keep the build dependency minimal.
 COPY frontend/ ./
+COPY --from=workbuddy-helper /workbuddy-setup.exe ./public/downloads/sub2api-workbuddy-setup-windows-amd64.exe
 COPY docs/legal/ /app/docs/legal/
 RUN pnpm run build
 

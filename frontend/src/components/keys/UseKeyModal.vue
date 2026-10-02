@@ -1038,11 +1038,11 @@ export XAI_API_KEY="${apiKey}"`
   // Text models only (Responses). Image/video: Imagine model IDs on media endpoints / feature overrides.
   // Credential order: api_key field → env_key → signed-in session → XAI_API_KEY global fallback.
   const modelsListUrl = `${baseUrl.replace(/\/+$/, '')}/models`
-  const configContent = `# Grok Build CLI → Sub2API Grok group (API key auth).
+  const configContent = `# Grok Build CLI → 哈呀哈基米ai Grok group (API key auth).
 # Docs: ~/.grok/docs/user-guide/05-configuration.md + 11-custom-models.md
 # Verify after save: grok inspect
 #
-# IMPORTANT: api_backend must be "responses" for Sub2API Grok (POST /v1/responses).
+# IMPORTANT: api_backend must be "responses" for 哈呀哈基米ai Grok (POST /v1/responses).
 # If omitted, Grok Build defaults to chat_completions (/v1/chat/completions).
 # Keep api_backend = "responses" on every model entry.
 #
@@ -1057,7 +1057,7 @@ models_list_url = "${modelsListUrl}"        # optional override (env: GROK_MODEL
 xai_api_base_url = "${baseUrl}"             # public xAI API base override for gateway routing
 cli_chat_proxy_base_url = "${baseUrl}"      # CLI chat-proxy base (env: GROK_CLI_CHAT_PROXY_BASE_URL)
 
-# Prefer API key when using a custom gateway (matches Sub2API).
+# Prefer API key when using a custom gateway (matches 哈呀哈基米ai).
 # Requires XAI_API_KEY env or per-model env_key / api_key.
 [auth]
 preferred_method = "api_key"
@@ -1065,7 +1065,7 @@ preferred_method = "api_key"
 [model."grok-4.5"]
 model = "grok-4.5"                          # id sent to the API
 name = "Grok 4.5"                           # shown in /model picker
-description = "Grok 4.5 via Sub2API (Responses)"
+description = "Grok 4.5 via 哈呀哈基米ai (Responses)"
 # base_url inherits from [endpoints].models_base_url; override only if needed:
 # base_url = "${baseUrl}"
 env_key = "XAI_API_KEY"                     # or: api_key = "${apiKey}"  (not recommended)
@@ -1128,7 +1128,7 @@ image_description = "grok-4.5"              # vision/describe-image helper model
 [session]
 auto_compact_threshold_percent = 80         # auto-compact at this % of context_window (default 85)
 
-# Imagine tools: model IDs go to Sub2API media endpoints (not the text [model.*] catalog).
+# Imagine tools: model IDs go to 哈呀哈基米ai media endpoints (not the text [model.*] catalog).
 # Enable only if the Grok group allows image/video generation.
 [features]
 image_gen = true
@@ -1175,7 +1175,7 @@ function generateGrokCodexFiles(baseUrl: string, apiKey: string): FileConfig[] {
       envContent = `export SUB2API_API_KEY="${apiKey}"`
   }
 
-  const configContent = `# Codex CLI → Sub2API Grok group
+  const configContent = `# Codex CLI → 哈呀哈基米ai Grok group
 # Docs: Codex config reference (model_providers.*, wire_api = "responses")
 #
 # Text models only. Image/video: grok-imagine-image / grok-imagine-video on media endpoints.
@@ -1193,7 +1193,7 @@ model_catalog_json = "${escapeTomlBasicString(codexModelCatalogPath.value)}"
 # windows_wsl_setup_acknowledged = true
 
 [model_providers.sub2api]
-name = "Sub2API Grok"
+name = "哈呀哈基米ai Grok"
 base_url = "${baseUrl}"
 # Prefer env_key (variable NAME). Do not combine with experimental_bearer_token.
 env_key = "SUB2API_API_KEY"
@@ -1202,7 +1202,7 @@ env_key = "SUB2API_API_KEY"
 wire_api = "responses"
 # API-key providers: do not require ChatGPT OAuth login
 requires_openai_auth = false
-# Grok/Sub2API path is HTTP/SSE; disable WS (Codex may otherwise try WebSocket first)
+# Grok/哈呀哈基米ai path is HTTP/SSE; disable WS (Codex may otherwise try WebSocket first)
 supports_websockets = false
 
 # Optional:
@@ -1259,7 +1259,7 @@ function generateRoutedCodexFiles(
     ? `$env:SUB2API_API_KEY="${apiKey}"`
     : `export SUB2API_API_KEY="${apiKey}"`
 
-  const configContent = `# Codex CLI -> Sub2API ${label} group
+  const configContent = `# Codex CLI -> 哈呀哈基米ai ${label} group
 model_provider = "sub2api"
 model = "${model}"
 review_model = "${model}"
@@ -1267,7 +1267,7 @@ disable_response_storage = true
 model_catalog_json = "${escapeTomlBasicString(codexModelCatalogPath.value)}"
 
 [model_providers.sub2api]
-name = "Sub2API ${label}"
+name = "哈呀哈基米ai ${label}"
 base_url = "${baseUrl}"
 env_key = "SUB2API_API_KEY"
 wire_api = "responses"
@@ -1872,7 +1872,7 @@ function generateOpenCodeConfig(platform: string, baseUrl: string, apiKey: strin
   } else if (platform === 'grok') {
     // Custom provider pointing at Sub2API OpenAI-compatible Responses/Chat endpoints.
     provider[platform].npm = '@ai-sdk/openai-compatible'
-    provider[platform].name = 'Grok via Sub2API'
+    provider[platform].name = 'Grok via 哈呀哈基米ai'
     provider[platform].models = grokModels
   }
 

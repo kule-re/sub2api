@@ -3,6 +3,7 @@ import { setActivePinia, createPinia } from 'pinia'
 import { useAppStore } from '@/stores/app'
 import { getPublicSettings } from '@/api/auth'
 import type { PublicSettings } from '@/types'
+import { DEFAULT_SITE_LOGO, DEFAULT_SITE_NAME } from '@/utils/branding'
 
 function createDeferred<T>() {
   let resolve!: (value: T | PromiseLike<T>) => void
@@ -27,7 +28,7 @@ function createPublicSettings(overrides: Partial<PublicSettings> = {}): PublicSe
     turnstile_enabled: false,
     turnstile_site_key: '',
     site_name: 'Test Site',
-    site_logo: '',
+    site_logo: DEFAULT_SITE_LOGO,
     site_subtitle: '',
     api_base_url: '',
     contact_info: '',
@@ -325,6 +326,43 @@ describe('useAppStore', () => {
   })
 
   // --- 公开设置 ---
+
+  it.each([
+    ['Sub2API', '/logo.svg'],
+    ['悟狗ai', '/wugou-logo.png'],
+    [' 悟狗ai ', '/wugou-logo.png?v=1#icon'],
+  ])('normalizes old injected branding %s and %s in the store, cache, and runtime config', (siteName, siteLogo) => {
+    const previousConfig = createPublicSettings({ site_name: siteName, site_logo: siteLogo })
+    window.__APP_CONFIG__ = previousConfig
+    const store = useAppStore()
+    store.initFromInjectedConfig()
+
+    expect(store.siteName).toBe(DEFAULT_SITE_NAME)
+    expect(store.siteLogo).toBe(DEFAULT_SITE_LOGO)
+    expect(store.cachedPublicSettings).toMatchObject({ site_name: DEFAULT_SITE_NAME, site_logo: DEFAULT_SITE_LOGO })
+    expect(window.__APP_CONFIG__).toMatchObject({ site_name: DEFAULT_SITE_NAME, site_logo: DEFAULT_SITE_LOGO })
+    expect(previousConfig).toMatchObject({ site_name: siteName, site_logo: siteLogo })
+  })
+
+  it.each([
+    ['', ''],
+    ['悟狗ai', '/wugou-logo.png?v=1#icon'],
+  ])('returns normalized branding %s and %s on API fetch and subsequent cache reads', async (siteName, siteLogo) => {
+    vi.mocked(getPublicSettings).mockResolvedValue(createPublicSettings({ site_name: siteName, site_logo: siteLogo }))
+    const store = useAppStore()
+    const fetched = await store.fetchPublicSettings()
+    expect(fetched).toMatchObject({ site_name: DEFAULT_SITE_NAME, site_logo: DEFAULT_SITE_LOGO })
+    expect(await store.fetchPublicSettings()).toEqual(fetched)
+  })
+
+  it('preserves a custom brand from public settings', async () => {
+    const customConfig = createPublicSettings({ site_name: 'Custom Site', site_logo: 'https://example.com/brand.svg' })
+    vi.mocked(getPublicSettings).mockResolvedValue(customConfig)
+    const store = useAppStore()
+    expect(await store.fetchPublicSettings()).toEqual(customConfig)
+    expect(store.siteName).toBe('Custom Site')
+    expect(store.siteLogo).toBe('https://example.com/brand.svg')
+  })
 
   describe('公开设置加载', () => {
     it('并发调用复用并等待同一个请求，包括 force 调用', async () => {

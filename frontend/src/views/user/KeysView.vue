@@ -3,6 +3,7 @@
     <TablePageLayout>
       <template #filters>
         <div class="flex flex-col gap-3">
+          <RouterLink to="/workbuddy" class="text-sm font-medium text-primary-600 hover:underline">WorkBuddy 配置助手 →</RouterLink>
           <div class="flex flex-wrap items-center gap-3">
             <SearchInput
               v-model="filterSearch"
@@ -1227,6 +1228,7 @@ import type { Column } from '@/components/common/types'
 import type { BatchApiKeyUsageStats } from '@/api/usage'
 import { formatDateTime } from '@/utils/format'
 import { maskApiKey } from '@/utils/maskApiKey'
+import { resolveSiteName } from '@/utils/branding'
 import PlatformIcon from '@/components/common/PlatformIcon.vue'
 import { platformBadgeLightClass } from '@/utils/platformColors'
 import { KEY_GROUP_PROVIDERS, KEY_GROUP_PROVIDER_ICONS, getKeyGroupProvider, type KeyGroupProvider } from '@/utils/keyGroupProviders'
@@ -2041,7 +2043,7 @@ const executeCcsImport = (row: ApiKey, clientType: CcSwitchClientType) => {
       };
     }
   })`
-  const providerName = (publicSettings.value?.site_name || 'sub2api').trim() || 'sub2api'
+  const providerName = resolveSiteName(publicSettings.value?.site_name || appStore.siteName)
   const deeplink = buildCcSwitchImportDeeplink({
     baseUrl,
     platform,

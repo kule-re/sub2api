@@ -1,0 +1,2748 @@
+
+/*  Homepage styles extracted from https://api.qygate.com/ (captured 2026-10-02).
+ * Only captured landing utilities, resets, visual tokens and animations are retained.
+ * Selectors are isolated to .wugou-landing; --wg-* properties and wugou-* keyframes
+ * avoid changing the application Tailwind v3 runtime. No remote fonts or asset URLs.  */
+.wugou-landing {
+  --accent: color-mix(in oklch, lab(63.9599% -11.9135 -45.5695) 12%, lab(100% 0 0));
+  --accent-foreground: #0a0a0a;
+  --background: lab(100% 0 0);
+  --blur-2xl: 40px;
+  --blur-sm: 8px;
+  --blur-xs: 4px;
+  --border: #e8e8e8;
+  --color-amber-300: lab(86.4156% 6.13147 78.3961);
+  --color-amber-400: lab(80.1641% 16.6016 99.2089);
+  --color-amber-500: lab(72.7183% 31.8672 97.9407);
+  --color-amber-600: lab(60.3514% 40.5624 87.1228);
+  --color-amber-700: lab(47.2709% 42.9082 69.2966);
+  --color-blue-400: lab(65.0361% -1.42065 -56.9802);
+  --color-blue-500: lab(54.1736% 13.3369 -74.6839);
+  --color-blue-600: lab(44.0605% 29.0279 -86.0352);
+  --color-emerald-400: lab(75.0771% -60.7313 19.4147);
+  --color-emerald-500: lab(66.9756% -58.27 19.5419);
+  --color-emerald-600: lab(55.0481% -49.9246 15.93);
+  --color-purple-500: lab(52.0183% 66.11 -78.2316);
+  --color-sky-300: lab(80.3307% -20.2945 -31.385);
+  --color-sky-700: lab(41.6013% -9.10804 -42.5647);
+  --color-violet-300: lab(76.7419% 18.3911 -37.0706);
+  --color-violet-400: lab(62.8239% 34.9159 -60.0512);
+  --color-violet-500: lab(49.9355% 55.1776 -81.8963);
+  --color-violet-600: lab(41.088% 68.9966 -91.995);
+  --color-white: #fff;
+  --container-2xl: 42rem;
+  --container-6xl: 72rem;
+  --container-7xl: 80rem;
+  --container-lg: 32rem;
+  --container-md: 28rem;
+  --container-xl: 36rem;
+  --default-font-family: "Public Sans", sans-serif;
+  --default-mono-font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --default-transition-duration: .15s;
+  --default-transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+  --destructive: #e40014;
+  --font-body: "Public Sans", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-sans: "Public Sans", sans-serif;
+  --font-weight-bold: 700;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --foreground: lab(2.75381% 0 0);
+  --input: #e8e8e8;
+  --leading-relaxed: 1.625;
+  --leading-tight: 1.25;
+  --muted: lab(96.52% -.0000298023 .0000119209);
+  --muted-foreground: lab(40.84% -.0000149012 .00000596046);
+  --popover: lab(100% 0 0);
+  --popover-foreground: lab(2.75381% 0 0);
+  --primary: lab(63.9599% -11.9135 -45.5695);
+  --primary-foreground: lab(100% 0 0);
+  --radius: 1rem;
+  --ring: #42a6ff;
+  --spacing: .25rem;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: calc(2 / 1.5);
+  --text-3xl: 1.875rem;
+  --text-3xl--line-height: calc(2.25 / 1.875);
+  --text-4xl: 2.25rem;
+  --text-4xl--line-height: calc(2.5 / 2.25);
+  --text-base: 1rem;
+  --text-base--line-height: calc(1.5 / 1);
+  --text-sm: .875rem;
+  --text-sm--line-height: calc(1.25 / .875);
+  --text-xs: .75rem;
+  --text-xs--line-height: calc(1 / .75);
+  --tracking-tight: -.025em;
+  --tracking-wide: .025em;
+  --tracking-wider: .05em;
+  --tracking-widest: .1em;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--foreground)
+}
+.wugou-landing.is-dark {
+  --accent: color-mix(in oklch, lab(45.9741% -4.86481 -47.1899) 20%, lab(11.26% .00000745058 -.00000298023));
+  --accent-foreground: #fafafa;
+  --background: lab(11.26% .00000745058 -.00000298023);
+  --border: #ffffff1a;
+  --destructive: #ff6568;
+  --foreground: lab(95.94% 0 0);
+  --input: #ffffff2b;
+  --muted: lab(19.38% 0 0);
+  --muted-foreground: lab(74.48% -.0000298023 0);
+  --popover: lab(19.38% 0 0);
+  --popover-foreground: lab(95.94% 0 0);
+  --primary: lab(45.9741% -4.86481 -47.1899);
+  --ring: #1a75c5
+}
+.wugou-landing,
+.wugou-landing *,
+.wugou-landing:after,
+.wugou-landing *:after,
+.wugou-landing:before,
+.wugou-landing *:before,
+.wugou-landing ::backdrop {
+  box-sizing: border-box;
+  border: 0 solid;
+  margin: 0;
+  padding: 0
+}
+.wugou-landing ::file-selector-button {
+  box-sizing: border-box;
+  border: 0 solid;
+  margin: 0;
+  padding: 0
+}
+.wugou-landing {
+  -webkit-text-size-adjust: 100%;
+  tab-size: 4;
+  line-height: 1.5;
+  font-family: var(--default-font-family,-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji");
+  font-feature-settings: var(--default-font-feature-settings,normal);
+  font-variation-settings: var(--default-font-variation-settings,normal);
+  -webkit-tap-highlight-color: transparent
+}
+.wugou-landing:is(h1),
+.wugou-landing h1,
+.wugou-landing:is(h2),
+.wugou-landing h2,
+.wugou-landing:is(h3),
+.wugou-landing h3 {
+  font-size: inherit;
+  font-weight: inherit
+}
+.wugou-landing:is(a),
+.wugou-landing a {
+  color: inherit;
+  -webkit-text-decoration: inherit;
+  -webkit-text-decoration: inherit;
+  -webkit-text-decoration: inherit;
+  text-decoration: inherit
+}
+.wugou-landing:is(code),
+.wugou-landing code {
+  font-family: var(--default-mono-font-family,ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+  font-feature-settings: var(--default-mono-font-feature-settings,normal);
+  font-variation-settings: var(--default-mono-font-variation-settings,normal);
+  font-size: 1em
+}
+.wugou-landing:is(img),
+.wugou-landing img,
+.wugou-landing:is(svg),
+.wugou-landing svg {
+  vertical-align: middle;
+  display: block
+}
+.wugou-landing:is(img),
+.wugou-landing img {
+  max-width: 100%;
+  height: auto
+}
+.wugou-landing:is(button),
+.wugou-landing button {
+  font: inherit;
+  font-feature-settings: inherit;
+  font-variation-settings: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  opacity: 1;
+  background-color: #0000;
+  border-radius: 0
+}
+.wugou-landing ::file-selector-button {
+  font: inherit;
+  font-feature-settings: inherit;
+  font-variation-settings: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  opacity: 1;
+  background-color: #0000;
+  border-radius: 0
+}
+.wugou-landing ::file-selector-button {
+  margin-inline-end: 4px
+}
+.wugou-landing ::placeholder {
+  opacity: 1
+}
+@supports (not ((-webkit-appearance:-apple-pay-button))) or (contain-intrinsic-size:1px) {
+.wugou-landing ::placeholder {
+  color: currentColor
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing ::placeholder {
+  color: color-mix(in oklab, currentcolor 50%, transparent)
+}
+}
+}
+.wugou-landing ::-webkit-search-decoration {
+  -webkit-appearance: none
+}
+.wugou-landing ::-webkit-date-and-time-value {
+  min-height: 1lh;
+  text-align: inherit
+}
+.wugou-landing ::-webkit-datetime-edit {
+  display: inline-flex
+}
+.wugou-landing ::-webkit-datetime-edit-fields-wrapper {
+  padding: 0
+}
+.wugou-landing ::-webkit-datetime-edit {
+  padding-block: 0
+}
+.wugou-landing ::-webkit-datetime-edit-year-field {
+  padding-block: 0
+}
+.wugou-landing ::-webkit-datetime-edit-month-field {
+  padding-block: 0
+}
+.wugou-landing ::-webkit-datetime-edit-day-field {
+  padding-block: 0
+}
+.wugou-landing ::-webkit-datetime-edit-hour-field {
+  padding-block: 0
+}
+.wugou-landing ::-webkit-datetime-edit-minute-field {
+  padding-block: 0
+}
+.wugou-landing ::-webkit-datetime-edit-second-field {
+  padding-block: 0
+}
+.wugou-landing ::-webkit-datetime-edit-millisecond-field {
+  padding-block: 0
+}
+.wugou-landing ::-webkit-datetime-edit-meridiem-field {
+  padding-block: 0
+}
+.wugou-landing ::-webkit-calendar-picker-indicator {
+  line-height: 1
+}
+.wugou-landing:is(:-moz-ui-invalid),
+.wugou-landing :-moz-ui-invalid {
+  box-shadow: none
+}
+.wugou-landing:is(button),
+.wugou-landing button {
+  appearance: button
+}
+.wugou-landing ::file-selector-button {
+  appearance: button
+}
+.wugou-landing ::-webkit-inner-spin-button {
+  height: auto
+}
+.wugou-landing ::-webkit-outer-spin-button {
+  height: auto
+}
+.wugou-landing:is([hidden]:where(:not([hidden=until-found]))),
+.wugou-landing [hidden]:where(:not([hidden=until-found])) {
+  display: none!important
+}
+.wugou-landing,
+.wugou-landing * {
+  border-color: var(--border);
+  outline-color: var(--ring)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing,
+.wugou-landing * {
+  outline-color: color-mix(in oklab, var(--ring) 50%, transparent)
+}
+}
+.wugou-landing,
+.wugou-landing * {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent
+}
+.wugou-landing {
+  font-family: Public Sans,sans-serif;
+  overflow-x: hidden
+}
+.wugou-landing {
+  background-color: var(--background);
+  width: 100%;
+  min-height: 100svh;
+  color: var(--foreground)
+}
+.wugou-landing {
+  font-family: var(--font-body)
+}
+.wugou-landing:is(button:not(:disabled)),
+.wugou-landing button:not(:disabled),
+.wugou-landing:is([role=button]:not(:disabled)),
+.wugou-landing [role=button]:not(:disabled) {
+  cursor: pointer
+}
+.wugou-landing:is(.\@container\/system-brand),
+.wugou-landing .\@container\/system-brand {
+  container: system-brand/inline-size
+}
+.wugou-landing:is(.pointer-events-auto),
+.wugou-landing .pointer-events-auto {
+  pointer-events: auto
+}
+.wugou-landing:is(.pointer-events-none),
+.wugou-landing .pointer-events-none {
+  pointer-events: none
+}
+.wugou-landing:is(.sr-only),
+.wugou-landing .sr-only {
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border-width: 0;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  position: absolute;
+  overflow: hidden
+}
+.wugou-landing:is(.absolute),
+.wugou-landing .absolute {
+  position: absolute
+}
+.wugou-landing:is(.fixed),
+.wugou-landing .fixed {
+  position: fixed
+}
+.wugou-landing:is(.relative),
+.wugou-landing .relative {
+  position: relative
+}
+.wugou-landing:is(.inset-0),
+.wugou-landing .inset-0 {
+  inset: 0
+}
+.wugou-landing:is(.inset-x-0),
+.wugou-landing .inset-x-0 {
+  inset-inline: 0
+}
+.wugou-landing:is(.-top-1),
+.wugou-landing .-top-1 {
+  top: calc(var(--spacing) * -1)
+}
+.wugou-landing:is(.-top-2),
+.wugou-landing .-top-2 {
+  top: calc(var(--spacing) * -2)
+}
+.wugou-landing:is(.top-0),
+.wugou-landing .top-0 {
+  top: 0
+}
+.wugou-landing:is(.top-\[3px\]),
+.wugou-landing .top-\[3px\] {
+  top: 3px
+}
+.wugou-landing:is(.top-\[7px\]),
+.wugou-landing .top-\[7px\] {
+  top: 7px
+}
+.wugou-landing:is(.top-\[11px\]),
+.wugou-landing .top-\[11px\] {
+  top: 11px
+}
+.wugou-landing:is(.-right-1),
+.wugou-landing .-right-1 {
+  right: calc(var(--spacing) * -1)
+}
+.wugou-landing:is(.-right-2),
+.wugou-landing .-right-2 {
+  right: calc(var(--spacing) * -2)
+}
+.wugou-landing:is(.-z-10),
+.wugou-landing .-z-10 {
+  z-index: calc(10 * -1)
+}
+.wugou-landing:is(.z-10),
+.wugou-landing .z-10 {
+  z-index: 10
+}
+.wugou-landing:is(.z-40),
+.wugou-landing .z-40 {
+  z-index: 40
+}
+.wugou-landing:is(.z-50),
+.wugou-landing .z-50 {
+  z-index: 50
+}
+.wugou-landing:is(.mx-1),
+.wugou-landing .mx-1 {
+  margin-inline: var(--spacing)
+}
+.wugou-landing:is(.mx-2),
+.wugou-landing .mx-2 {
+  margin-inline: calc(var(--spacing) * 2)
+}
+.wugou-landing:is(.mx-auto),
+.wugou-landing .mx-auto {
+  margin-inline: auto
+}
+.wugou-landing:is(.ms-auto),
+.wugou-landing .ms-auto {
+  margin-inline-start: auto
+}
+.wugou-landing:is(.mt-1\.5),
+.wugou-landing .mt-1\.5 {
+  margin-top: calc(var(--spacing) * 1.5)
+}
+.wugou-landing:is(.mt-2),
+.wugou-landing .mt-2 {
+  margin-top: calc(var(--spacing) * 2)
+}
+.wugou-landing:is(.mt-3),
+.wugou-landing .mt-3 {
+  margin-top: calc(var(--spacing) * 3)
+}
+.wugou-landing:is(.mt-4),
+.wugou-landing .mt-4 {
+  margin-top: calc(var(--spacing) * 4)
+}
+.wugou-landing:is(.mt-5),
+.wugou-landing .mt-5 {
+  margin-top: calc(var(--spacing) * 5)
+}
+.wugou-landing:is(.mt-8),
+.wugou-landing .mt-8 {
+  margin-top: calc(var(--spacing) * 8)
+}
+.wugou-landing:is(.mt-10),
+.wugou-landing .mt-10 {
+  margin-top: calc(var(--spacing) * 10)
+}
+.wugou-landing:is(.mt-12),
+.wugou-landing .mt-12 {
+  margin-top: calc(var(--spacing) * 12)
+}
+.wugou-landing:is(.-mb-px),
+.wugou-landing .-mb-px {
+  margin-bottom: -1px
+}
+.wugou-landing:is(.mb-1\.5),
+.wugou-landing .mb-1\.5 {
+  margin-bottom: calc(var(--spacing) * 1.5)
+}
+.wugou-landing:is(.mb-2),
+.wugou-landing .mb-2 {
+  margin-bottom: calc(var(--spacing) * 2)
+}
+.wugou-landing:is(.mb-3),
+.wugou-landing .mb-3 {
+  margin-bottom: calc(var(--spacing) * 3)
+}
+.wugou-landing:is(.mb-4),
+.wugou-landing .mb-4 {
+  margin-bottom: calc(var(--spacing) * 4)
+}
+.wugou-landing:is(.mb-6),
+.wugou-landing .mb-6 {
+  margin-bottom: calc(var(--spacing) * 6)
+}
+.wugou-landing:is(.mb-16),
+.wugou-landing .mb-16 {
+  margin-bottom: calc(var(--spacing) * 16)
+}
+.wugou-landing:is(.ml-1),
+.wugou-landing .ml-1 {
+  margin-left: var(--spacing)
+}
+.wugou-landing:is(.ml-1\.5),
+.wugou-landing .ml-1\.5 {
+  margin-left: calc(var(--spacing) * 1.5)
+}
+.wugou-landing:is(.ml-auto),
+.wugou-landing .ml-auto {
+  margin-left: auto
+}
+.wugou-landing:is(.block),
+.wugou-landing .block {
+  display: block
+}
+.wugou-landing:is(.flex),
+.wugou-landing .flex {
+  display: flex
+}
+.wugou-landing:is(.grid),
+.wugou-landing .grid {
+  display: grid
+}
+.wugou-landing:is(.hidden),
+.wugou-landing .hidden {
+  display: none
+}
+.wugou-landing:is(.inline-block),
+.wugou-landing .inline-block {
+  display: inline-block
+}
+.wugou-landing:is(.inline-flex),
+.wugou-landing .inline-flex {
+  display: inline-flex
+}
+.wugou-landing:is(.size-1),
+.wugou-landing .size-1 {
+  width: var(--spacing);
+  height: var(--spacing)
+}
+.wugou-landing:is(.size-1\.5),
+.wugou-landing .size-1\.5 {
+  width: calc(var(--spacing) * 1.5);
+  height: calc(var(--spacing) * 1.5)
+}
+.wugou-landing:is(.size-2\.5),
+.wugou-landing .size-2\.5 {
+  width: calc(var(--spacing) * 2.5);
+  height: calc(var(--spacing) * 2.5)
+}
+.wugou-landing:is(.size-3\.5),
+.wugou-landing .size-3\.5 {
+  width: calc(var(--spacing) * 3.5);
+  height: calc(var(--spacing) * 3.5)
+}
+.wugou-landing:is(.size-4),
+.wugou-landing .size-4 {
+  width: calc(var(--spacing) * 4);
+  height: calc(var(--spacing) * 4)
+}
+.wugou-landing:is(.size-5),
+.wugou-landing .size-5 {
+  width: calc(var(--spacing) * 5);
+  height: calc(var(--spacing) * 5)
+}
+.wugou-landing:is(.size-6),
+.wugou-landing .size-6 {
+  width: calc(var(--spacing) * 6);
+  height: calc(var(--spacing) * 6)
+}
+.wugou-landing:is(.size-7),
+.wugou-landing .size-7 {
+  width: calc(var(--spacing) * 7);
+  height: calc(var(--spacing) * 7)
+}
+.wugou-landing:is(.size-8),
+.wugou-landing .size-8 {
+  width: calc(var(--spacing) * 8);
+  height: calc(var(--spacing) * 8)
+}
+.wugou-landing:is(.size-9),
+.wugou-landing .size-9 {
+  width: calc(var(--spacing) * 9);
+  height: calc(var(--spacing) * 9)
+}
+.wugou-landing:is(.size-12),
+.wugou-landing .size-12 {
+  width: calc(var(--spacing) * 12);
+  height: calc(var(--spacing) * 12)
+}
+.wugou-landing:is(.size-16),
+.wugou-landing .size-16 {
+  width: calc(var(--spacing) * 16);
+  height: calc(var(--spacing) * 16)
+}
+.wugou-landing:is(.size-\[1\.2rem\]),
+.wugou-landing .size-\[1\.2rem\] {
+  width: 1.2rem;
+  height: 1.2rem
+}
+.wugou-landing:is(.size-full),
+.wugou-landing .size-full {
+  width: 100%;
+  height: 100%
+}
+.wugou-landing:is(.h-4),
+.wugou-landing .h-4 {
+  height: calc(var(--spacing) * 4)
+}
+.wugou-landing:is(.h-5),
+.wugou-landing .h-5 {
+  height: calc(var(--spacing) * 5)
+}
+.wugou-landing:is(.h-8),
+.wugou-landing .h-8 {
+  height: calc(var(--spacing) * 8)
+}
+.wugou-landing:is(.h-9),
+.wugou-landing .h-9 {
+  height: calc(var(--spacing) * 9)
+}
+.wugou-landing:is(.h-10),
+.wugou-landing .h-10 {
+  height: calc(var(--spacing) * 10)
+}
+.wugou-landing:is(.h-11),
+.wugou-landing .h-11 {
+  height: calc(var(--spacing) * 11)
+}
+.wugou-landing:is(.h-12),
+.wugou-landing .h-12 {
+  height: calc(var(--spacing) * 12)
+}
+.wugou-landing:is(.h-16),
+.wugou-landing .h-16 {
+  height: calc(var(--spacing) * 16)
+}
+.wugou-landing:is(.h-\[1\.5px\]),
+.wugou-landing .h-\[1\.5px\] {
+  height: 1.5px
+}
+.wugou-landing:is(.h-\[400px\]),
+.wugou-landing .h-\[400px\] {
+  height: 400px
+}
+.wugou-landing:is(.h-full),
+.wugou-landing .h-full {
+  height: 100%
+}
+.wugou-landing:is(.h-px),
+.wugou-landing .h-px {
+  height: 1px
+}
+.wugou-landing:is(.max-h-\(--available-height\)),
+.wugou-landing .max-h-\(--available-height\) {
+  max-height: var(--available-height)
+}
+.wugou-landing:is(.min-h-svh),
+.wugou-landing .min-h-svh {
+  min-height: 100svh
+}
+.wugou-landing:is(.w-\(--anchor-width\)),
+.wugou-landing .w-\(--anchor-width\) {
+  width: var(--anchor-width)
+}
+.wugou-landing:is(.w-9),
+.wugou-landing .w-9 {
+  width: calc(var(--spacing) * 9)
+}
+.wugou-landing:is(.w-fit),
+.wugou-landing .w-fit {
+  width: fit-content
+}
+.wugou-landing:is(.w-full),
+.wugou-landing .w-full {
+  width: 100%
+}
+.wugou-landing:is(.w-px),
+.wugou-landing .w-px {
+  width: 1px
+}
+.wugou-landing:is(.max-w-2xl),
+.wugou-landing .max-w-2xl {
+  max-width: var(--container-2xl)
+}
+.wugou-landing:is(.max-w-6xl),
+.wugou-landing .max-w-6xl {
+  max-width: var(--container-6xl)
+}
+.wugou-landing:is(.max-w-7xl),
+.wugou-landing .max-w-7xl {
+  max-width: var(--container-7xl)
+}
+.wugou-landing:is(.max-w-48),
+.wugou-landing .max-w-48 {
+  max-width: calc(var(--spacing) * 48)
+}
+.wugou-landing:is(.max-w-\[52rem\]),
+.wugou-landing .max-w-\[52rem\] {
+  max-width: 52rem
+}
+.wugou-landing:is(.max-w-\[200px\]),
+.wugou-landing .max-w-\[200px\] {
+  max-width: 200px
+}
+.wugou-landing:is(.max-w-\[240px\]),
+.wugou-landing .max-w-\[240px\] {
+  max-width: 240px
+}
+.wugou-landing:is(.max-w-lg),
+.wugou-landing .max-w-lg {
+  max-width: var(--container-lg)
+}
+.wugou-landing:is(.max-w-md),
+.wugou-landing .max-w-md {
+  max-width: var(--container-md)
+}
+.wugou-landing:is(.max-w-xl),
+.wugou-landing .max-w-xl {
+  max-width: var(--container-xl)
+}
+.wugou-landing:is(.min-w-0),
+.wugou-landing .min-w-0 {
+  min-width: 0
+}
+.wugou-landing:is(.min-w-5),
+.wugou-landing .min-w-5 {
+  min-width: calc(var(--spacing) * 5)
+}
+.wugou-landing:is(.min-w-32),
+.wugou-landing .min-w-32 {
+  min-width: calc(var(--spacing) * 32)
+}
+.wugou-landing:is(.flex-1),
+.wugou-landing .flex-1 {
+  flex: 1
+}
+.wugou-landing:is(.shrink-0),
+.wugou-landing .shrink-0 {
+  flex-shrink: 0
+}
+.wugou-landing:is(.origin-\(--transform-origin\)),
+.wugou-landing .origin-\(--transform-origin\) {
+  transform-origin: var(--transform-origin)
+}
+.wugou-landing:is(.origin-center),
+.wugou-landing .origin-center {
+  transform-origin: 50%
+}
+.wugou-landing:is(.translate-y-0),
+.wugou-landing .translate-y-0 {
+  translate: var(--wg-translate-x) var(--wg-translate-y);
+  --wg-translate-y: 0px;
+  transform: none
+}
+.wugou-landing:is(.translate-y-4),
+.wugou-landing .translate-y-4 {
+  translate: var(--wg-translate-x) var(--wg-translate-y);
+  --wg-translate-y: calc(var(--spacing) * 4);
+  transform: none
+}
+.wugou-landing:is(.scale-x-0),
+.wugou-landing .scale-x-0 {
+  scale: var(--wg-scale-x) var(--wg-scale-y);
+  --wg-scale-x: 0%;
+  transform: none
+}
+.wugou-landing:is(.-rotate-45),
+.wugou-landing .-rotate-45 {
+  rotate: -45deg;
+  transform: none
+}
+.wugou-landing:is(.rotate-45),
+.wugou-landing .rotate-45 {
+  rotate: 45deg;
+  transform: none
+}
+.wugou-landing:is(.cursor-default),
+.wugou-landing .cursor-default {
+  cursor: default
+}
+.wugou-landing:is(.grid-cols-1),
+.wugou-landing .grid-cols-1 {
+  grid-template-columns: repeat(1,minmax(0,1fr))
+}
+.wugou-landing:is(.grid-cols-2),
+.wugou-landing .grid-cols-2 {
+  grid-template-columns: repeat(2,minmax(0,1fr))
+}
+.wugou-landing:is(.grid-cols-3),
+.wugou-landing .grid-cols-3 {
+  grid-template-columns: repeat(3,minmax(0,1fr))
+}
+.wugou-landing:is(.grid-rows-\[235px_minmax\(0\,1fr\)\]),
+.wugou-landing .grid-rows-\[235px_minmax\(0\,1fr\)\] {
+  grid-template-rows: 235px minmax(0,1fr)
+}
+.wugou-landing:is(.flex-col),
+.wugou-landing .flex-col {
+  flex-direction: column
+}
+.wugou-landing:is(.flex-wrap),
+.wugou-landing .flex-wrap {
+  flex-wrap: wrap
+}
+.wugou-landing:is(.items-center),
+.wugou-landing .items-center {
+  align-items: center
+}
+.wugou-landing:is(.items-start),
+.wugou-landing .items-start {
+  align-items: flex-start
+}
+.wugou-landing:is(.justify-between),
+.wugou-landing .justify-between {
+  justify-content: space-between
+}
+.wugou-landing:is(.justify-center),
+.wugou-landing .justify-center {
+  justify-content: center
+}
+.wugou-landing:is(.gap-0\.5),
+.wugou-landing .gap-0\.5 {
+  gap: calc(var(--spacing) * .5)
+}
+.wugou-landing:is(.gap-1),
+.wugou-landing .gap-1 {
+  gap: var(--spacing)
+}
+.wugou-landing:is(.gap-1\.5),
+.wugou-landing .gap-1\.5 {
+  gap: calc(var(--spacing) * 1.5)
+}
+.wugou-landing:is(.gap-2),
+.wugou-landing .gap-2 {
+  gap: calc(var(--spacing) * 2)
+}
+.wugou-landing:is(.gap-2\.5),
+.wugou-landing .gap-2\.5 {
+  gap: calc(var(--spacing) * 2.5)
+}
+.wugou-landing:is(.gap-3),
+.wugou-landing .gap-3 {
+  gap: calc(var(--spacing) * 3)
+}
+.wugou-landing:is(.gap-8),
+.wugou-landing .gap-8 {
+  gap: calc(var(--spacing) * 8)
+}
+.wugou-landing:is(.gap-10),
+.wugou-landing .gap-10 {
+  gap: calc(var(--spacing) * 10)
+}
+.wugou-landing:is(.gap-12),
+.wugou-landing .gap-12 {
+  gap: calc(var(--spacing) * 12)
+}
+.wugou-landing:is(.gap-px),
+.wugou-landing .gap-px {
+  gap: 1px
+}
+.wugou-landing:is(:where(.space-y-2>:not(:last-child))),
+.wugou-landing :where(.space-y-2>:not(:last-child)) {
+  margin-block-start: calc(calc(var(--spacing) * 2) * var(--wg-space-y-reverse));
+  margin-block-end: calc(calc(var(--spacing) * 2) * calc(1 - var(--wg-space-y-reverse)));
+  --wg-space-y-reverse: 0
+}
+.wugou-landing:is(.gap-x-2),
+.wugou-landing .gap-x-2 {
+  column-gap: calc(var(--spacing) * 2)
+}
+.wugou-landing:is(.gap-x-3),
+.wugou-landing .gap-x-3 {
+  column-gap: calc(var(--spacing) * 3)
+}
+.wugou-landing:is(:where(.-space-x-2>:not(:last-child))),
+.wugou-landing :where(.-space-x-2>:not(:last-child)) {
+  margin-inline-start: calc(calc(var(--spacing) * -2) * var(--wg-space-x-reverse));
+  margin-inline-end: calc(calc(var(--spacing) * -2) * calc(1 - var(--wg-space-x-reverse)));
+  --wg-space-x-reverse: 0
+}
+.wugou-landing:is(.gap-y-1),
+.wugou-landing .gap-y-1 {
+  row-gap: var(--spacing)
+}
+.wugou-landing:is(.gap-y-2),
+.wugou-landing .gap-y-2 {
+  row-gap: calc(var(--spacing) * 2)
+}
+.wugou-landing:is(.truncate),
+.wugou-landing .truncate {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden
+}
+.wugou-landing:is(.overflow-hidden),
+.wugou-landing .overflow-hidden {
+  overflow: hidden
+}
+.wugou-landing:is(.overflow-x-clip),
+.wugou-landing .overflow-x-clip {
+  overflow-x: clip
+}
+.wugou-landing:is(.overflow-x-hidden),
+.wugou-landing .overflow-x-hidden {
+  overflow-x: hidden
+}
+.wugou-landing:is(.overflow-y-auto),
+.wugou-landing .overflow-y-auto {
+  overflow-y: auto
+}
+.wugou-landing:is(.rounded-2xl),
+.wugou-landing .rounded-2xl {
+  border-radius: calc(var(--radius) * 1.8)
+}
+.wugou-landing:is(.rounded-4xl),
+.wugou-landing .rounded-4xl {
+  border-radius: calc(var(--radius) * 2.6)
+}
+.wugou-landing:is(.rounded-full),
+.wugou-landing .rounded-full {
+  border-radius: 3.40282e38px
+}
+.wugou-landing:is(.rounded-lg),
+.wugou-landing .rounded-lg {
+  border-radius: var(--radius)
+}
+.wugou-landing:is(.rounded-md),
+.wugou-landing .rounded-md {
+  border-radius: calc(var(--radius) * .8)
+}
+.wugou-landing:is(.rounded-xl),
+.wugou-landing .rounded-xl {
+  border-radius: calc(var(--radius) * 1.4)
+}
+.wugou-landing:is(.border),
+.wugou-landing .border {
+  border-style: var(--wg-border-style);
+  border-width: 1px
+}
+.wugou-landing:is(.border-2),
+.wugou-landing .border-2 {
+  border-style: var(--wg-border-style);
+  border-width: 2px
+}
+.wugou-landing:is(.border-y),
+.wugou-landing .border-y {
+  border-block-style: var(--wg-border-style);
+  border-block-width: 1px
+}
+.wugou-landing:is(.border-t),
+.wugou-landing .border-t {
+  border-top-style: var(--wg-border-style);
+  border-top-width: 1px
+}
+.wugou-landing:is(.border-b),
+.wugou-landing .border-b {
+  border-bottom-style: var(--wg-border-style);
+  border-bottom-width: 1px
+}
+.wugou-landing:is(.border-b-2),
+.wugou-landing .border-b-2 {
+  border-bottom-style: var(--wg-border-style);
+  border-bottom-width: 2px
+}
+.wugou-landing:is(.border-amber-500),
+.wugou-landing .border-amber-500 {
+  border-color: var(--color-amber-500)
+}
+.wugou-landing:is(.border-background),
+.wugou-landing .border-background {
+  border-color: var(--background)
+}
+.wugou-landing:is(.border-blue-500),
+.wugou-landing .border-blue-500 {
+  border-color: var(--color-blue-500)
+}
+.wugou-landing:is(.border-blue-500\/30),
+.wugou-landing .border-blue-500\/30 {
+  border-color: #3080ff4d
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.border-blue-500\/30),
+.wugou-landing .border-blue-500\/30 {
+  border-color: color-mix(in oklab, var(--color-blue-500) 30%, transparent)
+}
+}
+.wugou-landing:is(.border-border\/30),
+.wugou-landing .border-border\/30 {
+  border-color: var(--border)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.border-border\/30),
+.wugou-landing .border-border\/30 {
+  border-color: color-mix(in oklab, var(--border) 30%, transparent)
+}
+}
+.wugou-landing:is(.border-border\/40),
+.wugou-landing .border-border\/40 {
+  border-color: var(--border)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.border-border\/40),
+.wugou-landing .border-border\/40 {
+  border-color: color-mix(in oklab, var(--border) 40%, transparent)
+}
+}
+.wugou-landing:is(.border-border\/50),
+.wugou-landing .border-border\/50 {
+  border-color: var(--border)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.border-border\/50),
+.wugou-landing .border-border\/50 {
+  border-color: color-mix(in oklab, var(--border) 50%, transparent)
+}
+}
+.wugou-landing:is(.border-border\/60),
+.wugou-landing .border-border\/60 {
+  border-color: var(--border)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.border-border\/60),
+.wugou-landing .border-border\/60 {
+  border-color: color-mix(in oklab, var(--border) 60%, transparent)
+}
+}
+.wugou-landing:is(.border-emerald-500),
+.wugou-landing .border-emerald-500 {
+  border-color: var(--color-emerald-500)
+}
+.wugou-landing:is(.border-emerald-500\/20),
+.wugou-landing .border-emerald-500\/20 {
+  border-color: #00bb7f33
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.border-emerald-500\/20),
+.wugou-landing .border-emerald-500\/20 {
+  border-color: color-mix(in oklab, var(--color-emerald-500) 20%, transparent)
+}
+}
+.wugou-landing:is(.border-transparent),
+.wugou-landing .border-transparent {
+  border-color: #0000
+}
+.wugou-landing:is(.border-violet-500),
+.wugou-landing .border-violet-500 {
+  border-color: var(--color-violet-500)
+}
+.wugou-landing:is(.bg-amber-500\/10),
+.wugou-landing .bg-amber-500\/10 {
+  background-color: #f99c001a
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.bg-amber-500\/10),
+.wugou-landing .bg-amber-500\/10 {
+  background-color: color-mix(in oklab, var(--color-amber-500) 10%, transparent)
+}
+}
+.wugou-landing:is(.bg-background),
+.wugou-landing .bg-background {
+  background-color: var(--background)
+}
+.wugou-landing:is(.bg-background\/60),
+.wugou-landing .bg-background\/60 {
+  background-color: var(--background)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.bg-background\/60),
+.wugou-landing .bg-background\/60 {
+  background-color: color-mix(in oklab, var(--background) 60%, transparent)
+}
+}
+.wugou-landing:is(.bg-background\/98),
+.wugou-landing .bg-background\/98 {
+  background-color: var(--background)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.bg-background\/98),
+.wugou-landing .bg-background\/98 {
+  background-color: color-mix(in oklab, var(--background) 98%, transparent)
+}
+}
+.wugou-landing:is(.bg-blue-500\/10),
+.wugou-landing .bg-blue-500\/10 {
+  background-color: #3080ff1a
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.bg-blue-500\/10),
+.wugou-landing .bg-blue-500\/10 {
+  background-color: color-mix(in oklab, var(--color-blue-500) 10%, transparent)
+}
+}
+.wugou-landing:is(.bg-blue-500\/20),
+.wugou-landing .bg-blue-500\/20 {
+  background-color: #3080ff33
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.bg-blue-500\/20),
+.wugou-landing .bg-blue-500\/20 {
+  background-color: color-mix(in oklab, var(--color-blue-500) 20%, transparent)
+}
+}
+.wugou-landing:is(.bg-border\/40),
+.wugou-landing .bg-border\/40 {
+  background-color: var(--border)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.bg-border\/40),
+.wugou-landing .bg-border\/40 {
+  background-color: color-mix(in oklab, var(--border) 40%, transparent)
+}
+}
+.wugou-landing:is(.bg-current),
+.wugou-landing .bg-current {
+  background-color: currentColor
+}
+.wugou-landing:is(.bg-destructive\/10),
+.wugou-landing .bg-destructive\/10 {
+  background-color: var(--destructive)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.bg-destructive\/10),
+.wugou-landing .bg-destructive\/10 {
+  background-color: color-mix(in oklab, var(--destructive) 10%, transparent)
+}
+}
+.wugou-landing:is(.bg-emerald-500),
+.wugou-landing .bg-emerald-500 {
+  background-color: var(--color-emerald-500)
+}
+.wugou-landing:is(.bg-emerald-500\/5),
+.wugou-landing .bg-emerald-500\/5 {
+  background-color: #00bb7f0d
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.bg-emerald-500\/5),
+.wugou-landing .bg-emerald-500\/5 {
+  background-color: color-mix(in oklab, var(--color-emerald-500) 5%, transparent)
+}
+}
+.wugou-landing:is(.bg-emerald-500\/10),
+.wugou-landing .bg-emerald-500\/10 {
+  background-color: #00bb7f1a
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.bg-emerald-500\/10),
+.wugou-landing .bg-emerald-500\/10 {
+  background-color: color-mix(in oklab, var(--color-emerald-500) 10%, transparent)
+}
+}
+.wugou-landing:is(.bg-foreground),
+.wugou-landing .bg-foreground {
+  background-color: var(--foreground)
+}
+.wugou-landing:is(.bg-foreground\/15),
+.wugou-landing .bg-foreground\/15 {
+  background-color: var(--foreground)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.bg-foreground\/15),
+.wugou-landing .bg-foreground\/15 {
+  background-color: color-mix(in oklab, var(--foreground) 15%, transparent)
+}
+}
+.wugou-landing:is(.bg-muted),
+.wugou-landing .bg-muted {
+  background-color: var(--muted)
+}
+.wugou-landing:is(.bg-muted\/10),
+.wugou-landing .bg-muted\/10 {
+  background-color: var(--muted)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.bg-muted\/10),
+.wugou-landing .bg-muted\/10 {
+  background-color: color-mix(in oklab, var(--muted) 10%, transparent)
+}
+}
+.wugou-landing:is(.bg-muted\/15),
+.wugou-landing .bg-muted\/15 {
+  background-color: var(--muted)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.bg-muted\/15),
+.wugou-landing .bg-muted\/15 {
+  background-color: color-mix(in oklab, var(--muted) 15%, transparent)
+}
+}
+.wugou-landing:is(.bg-muted\/20),
+.wugou-landing .bg-muted\/20 {
+  background-color: var(--muted)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.bg-muted\/20),
+.wugou-landing .bg-muted\/20 {
+  background-color: color-mix(in oklab, var(--muted) 20%, transparent)
+}
+}
+.wugou-landing:is(.bg-muted\/30),
+.wugou-landing .bg-muted\/30 {
+  background-color: var(--muted)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.bg-muted\/30),
+.wugou-landing .bg-muted\/30 {
+  background-color: color-mix(in oklab, var(--muted) 30%, transparent)
+}
+}
+.wugou-landing:is(.bg-popover),
+.wugou-landing .bg-popover {
+  background-color: var(--popover)
+}
+.wugou-landing:is(.bg-primary),
+.wugou-landing .bg-primary {
+  background-color: var(--primary)
+}
+.wugou-landing:is(.bg-violet-500\/10),
+.wugou-landing .bg-violet-500\/10 {
+  background-color: #8d54ff1a
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.bg-violet-500\/10),
+.wugou-landing .bg-violet-500\/10 {
+  background-color: color-mix(in oklab, var(--color-violet-500) 10%, transparent)
+}
+}
+.wugou-landing:is(.bg-white\/95),
+.wugou-landing .bg-white\/95 {
+  background-color: #fffffff2
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.bg-white\/95),
+.wugou-landing .bg-white\/95 {
+  background-color: color-mix(in oklab, var(--color-white) 95%, transparent)
+}
+}
+.wugou-landing:is(.bg-gradient-to-br),
+.wugou-landing .bg-gradient-to-br {
+  background-image: linear-gradient(var(--wg-gradient-stops));
+  --wg-gradient-position: to bottom right in oklab
+}
+.wugou-landing:is(.bg-gradient-to-r),
+.wugou-landing .bg-gradient-to-r {
+  background-image: linear-gradient(var(--wg-gradient-stops));
+  --wg-gradient-position: to right in oklab
+}
+.wugou-landing:is(.bg-\[linear-gradient\(to_right\,var\(--border\)_1px\,transparent_1px\)\,linear-gradient\(to_bottom\,var\(--border\)_1px\,transparent_1px\)\]),
+.wugou-landing .bg-\[linear-gradient\(to_right\,var\(--border\)_1px\,transparent_1px\)\,linear-gradient\(to_bottom\,var\(--border\)_1px\,transparent_1px\)\] {
+  background-image: linear-gradient(to right,var(--border) 1px,transparent 1px),linear-gradient(to bottom,var(--border) 1px,transparent 1px)
+}
+.wugou-landing:is(.from-blue-400),
+.wugou-landing .from-blue-400 {
+  --wg-gradient-from: var(--color-blue-400);
+  --wg-gradient-stops: var(--wg-gradient-via-stops,var(--wg-gradient-position), var(--wg-gradient-from) var(--wg-gradient-from-position), var(--wg-gradient-to) var(--wg-gradient-to-position))
+}
+.wugou-landing:is(.from-muted),
+.wugou-landing .from-muted {
+  --wg-gradient-from: var(--muted);
+  --wg-gradient-stops: var(--wg-gradient-via-stops,var(--wg-gradient-position), var(--wg-gradient-from) var(--wg-gradient-from-position), var(--wg-gradient-to) var(--wg-gradient-to-position))
+}
+.wugou-landing:is(.via-violet-400),
+.wugou-landing .via-violet-400 {
+  --wg-gradient-via: var(--color-violet-400);
+  --wg-gradient-via-stops: var(--wg-gradient-position), var(--wg-gradient-from) var(--wg-gradient-from-position), var(--wg-gradient-via) var(--wg-gradient-via-position), var(--wg-gradient-to) var(--wg-gradient-to-position);
+  --wg-gradient-stops: var(--wg-gradient-via-stops)
+}
+.wugou-landing:is(.to-muted\/60),
+.wugou-landing .to-muted\/60 {
+  --wg-gradient-to: var(--muted)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.to-muted\/60),
+.wugou-landing .to-muted\/60 {
+  --wg-gradient-to: color-mix(in oklab, var(--muted) 60%, transparent)
+}
+}
+.wugou-landing:is(.to-muted\/60),
+.wugou-landing .to-muted\/60 {
+  --wg-gradient-stops: var(--wg-gradient-via-stops,var(--wg-gradient-position), var(--wg-gradient-from) var(--wg-gradient-from-position), var(--wg-gradient-to) var(--wg-gradient-to-position))
+}
+.wugou-landing:is(.to-purple-500),
+.wugou-landing .to-purple-500 {
+  --wg-gradient-to: var(--color-purple-500);
+  --wg-gradient-stops: var(--wg-gradient-via-stops,var(--wg-gradient-position), var(--wg-gradient-from) var(--wg-gradient-from-position), var(--wg-gradient-to) var(--wg-gradient-to-position))
+}
+.wugou-landing:is(.\[mask-image\:radial-gradient\(ellipse_60\%_50\%_at_50\%_30\%\,black_20\%\,transparent_100\%\)\]),
+.wugou-landing .\[mask-image\:radial-gradient\(ellipse_60\%_50\%_at_50\%_30\%\,black_20\%\,transparent_100\%\)\] {
+  -webkit-mask-image: radial-gradient(60% 50% at 50% 30%,#000 20%,#0000 100%);
+  mask-image: radial-gradient(60% 50% at 50% 30%,#000 20%,#0000 100%)
+}
+.wugou-landing:is(.bg-\[size\:4rem_4rem\]),
+.wugou-landing .bg-\[size\:4rem_4rem\] {
+  background-size: 4rem 4rem
+}
+.wugou-landing:is(.bg-clip-padding),
+.wugou-landing .bg-clip-padding {
+  background-clip: padding-box
+}
+.wugou-landing:is(.bg-clip-text),
+.wugou-landing .bg-clip-text {
+  -webkit-background-clip: text;
+  background-clip: text
+}
+.wugou-landing:is(.object-contain),
+.wugou-landing .object-contain {
+  object-fit: contain
+}
+.wugou-landing:is(.p-1),
+.wugou-landing .p-1 {
+  padding: var(--spacing)
+}
+.wugou-landing:is(.p-7),
+.wugou-landing .p-7 {
+  padding: calc(var(--spacing) * 7)
+}
+.wugou-landing:is(.px-1),
+.wugou-landing .px-1 {
+  padding-inline: var(--spacing)
+}
+.wugou-landing:is(.px-1\.5),
+.wugou-landing .px-1\.5 {
+  padding-inline: calc(var(--spacing) * 1.5)
+}
+.wugou-landing:is(.px-2),
+.wugou-landing .px-2 {
+  padding-inline: calc(var(--spacing) * 2)
+}
+.wugou-landing:is(.px-2\.5),
+.wugou-landing .px-2\.5 {
+  padding-inline: calc(var(--spacing) * 2.5)
+}
+.wugou-landing:is(.px-3),
+.wugou-landing .px-3 {
+  padding-inline: calc(var(--spacing) * 3)
+}
+.wugou-landing:is(.px-3\.5),
+.wugou-landing .px-3\.5 {
+  padding-inline: calc(var(--spacing) * 3.5)
+}
+.wugou-landing:is(.px-4),
+.wugou-landing .px-4 {
+  padding-inline: calc(var(--spacing) * 4)
+}
+.wugou-landing:is(.px-5),
+.wugou-landing .px-5 {
+  padding-inline: calc(var(--spacing) * 5)
+}
+.wugou-landing:is(.px-6),
+.wugou-landing .px-6 {
+  padding-inline: calc(var(--spacing) * 6)
+}
+.wugou-landing:is(.px-8),
+.wugou-landing .px-8 {
+  padding-inline: calc(var(--spacing) * 8)
+}
+.wugou-landing:is(.py-0\.5),
+.wugou-landing .py-0\.5 {
+  padding-block: calc(var(--spacing) * .5)
+}
+.wugou-landing:is(.py-1),
+.wugou-landing .py-1 {
+  padding-block: var(--spacing)
+}
+.wugou-landing:is(.py-1\.5),
+.wugou-landing .py-1\.5 {
+  padding-block: calc(var(--spacing) * 1.5)
+}
+.wugou-landing:is(.py-2),
+.wugou-landing .py-2 {
+  padding-block: calc(var(--spacing) * 2)
+}
+.wugou-landing:is(.py-2\.5),
+.wugou-landing .py-2\.5 {
+  padding-block: calc(var(--spacing) * 2.5)
+}
+.wugou-landing:is(.py-3),
+.wugou-landing .py-3 {
+  padding-block: calc(var(--spacing) * 3)
+}
+.wugou-landing:is(.py-4),
+.wugou-landing .py-4 {
+  padding-block: calc(var(--spacing) * 4)
+}
+.wugou-landing:is(.py-10),
+.wugou-landing .py-10 {
+  padding-block: calc(var(--spacing) * 10)
+}
+.wugou-landing:is(.py-12),
+.wugou-landing .py-12 {
+  padding-block: calc(var(--spacing) * 12)
+}
+.wugou-landing:is(.py-24),
+.wugou-landing .py-24 {
+  padding-block: calc(var(--spacing) * 24)
+}
+.wugou-landing:is(.pt-0),
+.wugou-landing .pt-0 {
+  padding-top: 0
+}
+.wugou-landing:is(.pt-3),
+.wugou-landing .pt-3 {
+  padding-top: calc(var(--spacing) * 3)
+}
+.wugou-landing:is(.pt-6),
+.wugou-landing .pt-6 {
+  padding-top: calc(var(--spacing) * 6)
+}
+.wugou-landing:is(.pt-20),
+.wugou-landing .pt-20 {
+  padding-top: calc(var(--spacing) * 20)
+}
+.wugou-landing:is(.pt-24),
+.wugou-landing .pt-24 {
+  padding-top: calc(var(--spacing) * 24)
+}
+.wugou-landing:is(.pr-1\.5),
+.wugou-landing .pr-1\.5 {
+  padding-right: calc(var(--spacing) * 1.5)
+}
+.wugou-landing:is(.pr-2),
+.wugou-landing .pr-2 {
+  padding-right: calc(var(--spacing) * 2)
+}
+.wugou-landing:is(.pb-10),
+.wugou-landing .pb-10 {
+  padding-bottom: calc(var(--spacing) * 10)
+}
+.wugou-landing:is(.pb-16),
+.wugou-landing .pb-16 {
+  padding-bottom: calc(var(--spacing) * 16)
+}
+.wugou-landing:is(.pl-4),
+.wugou-landing .pl-4 {
+  padding-left: calc(var(--spacing) * 4)
+}
+.wugou-landing:is(.text-center),
+.wugou-landing .text-center {
+  text-align: center
+}
+.wugou-landing:is(.text-left),
+.wugou-landing .text-left {
+  text-align: left
+}
+.wugou-landing:is(.font-mono),
+.wugou-landing .font-mono {
+  font-family: var(--font-mono)
+}
+.wugou-landing:is(.font-sans),
+.wugou-landing .font-sans {
+  font-family: Public Sans,sans-serif
+}
+.wugou-landing:is(.text-2xl),
+.wugou-landing .text-2xl {
+  font-size: var(--text-2xl);
+  line-height: var(--wg-leading,var(--text-2xl--line-height))
+}
+.wugou-landing:is(.text-base),
+.wugou-landing .text-base {
+  font-size: var(--text-base);
+  line-height: var(--wg-leading,var(--text-base--line-height))
+}
+.wugou-landing:is(.text-sm),
+.wugou-landing .text-sm {
+  font-size: var(--text-sm);
+  line-height: var(--wg-leading,var(--text-sm--line-height))
+}
+.wugou-landing:is(.text-xs),
+.wugou-landing .text-xs {
+  font-size: var(--text-xs);
+  line-height: var(--wg-leading,var(--text-xs--line-height))
+}
+.wugou-landing:is(.text-\[9px\]),
+.wugou-landing .text-\[9px\] {
+  font-size: 9px
+}
+.wugou-landing:is(.text-\[10px\]),
+.wugou-landing .text-\[10px\] {
+  font-size: 10px
+}
+.wugou-landing:is(.text-\[11px\]),
+.wugou-landing .text-\[11px\] {
+  font-size: 11px
+}
+.wugou-landing:is(.text-\[12\.5px\]),
+.wugou-landing .text-\[12\.5px\] {
+  font-size: 12.5px
+}
+.wugou-landing:is(.text-\[clamp\(2\.25rem\,4\.5vw\,3\.25rem\)\]),
+.wugou-landing .text-\[clamp\(2\.25rem\,4\.5vw\,3\.25rem\)\] {
+  font-size: clamp(2.25rem,4.5vw,3.25rem)
+}
+.wugou-landing:is(.leading-\[1\.15\]),
+.wugou-landing .leading-\[1\.15\] {
+  line-height: 1.15;
+  --wg-leading: 1.15
+}
+.wugou-landing:is(.leading-\[1\.55\]),
+.wugou-landing .leading-\[1\.55\] {
+  line-height: 1.55;
+  --wg-leading: 1.55
+}
+.wugou-landing:is(.leading-relaxed),
+.wugou-landing .leading-relaxed {
+  line-height: var(--leading-relaxed);
+  --wg-leading: var(--leading-relaxed)
+}
+.wugou-landing:is(.leading-tight),
+.wugou-landing .leading-tight {
+  line-height: var(--leading-tight);
+  --wg-leading: var(--leading-tight)
+}
+.wugou-landing:is(.font-bold),
+.wugou-landing .font-bold {
+  font-weight: var(--font-weight-bold);
+  --wg-font-weight: var(--font-weight-bold)
+}
+.wugou-landing:is(.font-medium),
+.wugou-landing .font-medium {
+  font-weight: var(--font-weight-medium);
+  --wg-font-weight: var(--font-weight-medium)
+}
+.wugou-landing:is(.font-semibold),
+.wugou-landing .font-semibold {
+  font-weight: var(--font-weight-semibold);
+  --wg-font-weight: var(--font-weight-semibold)
+}
+.wugou-landing:is(.tracking-\[0\.15em\]),
+.wugou-landing .tracking-\[0\.15em\] {
+  letter-spacing: .15em;
+  --wg-tracking: .15em
+}
+.wugou-landing:is(.tracking-\[0\.18em\]),
+.wugou-landing .tracking-\[0\.18em\] {
+  letter-spacing: .18em;
+  --wg-tracking: .18em
+}
+.wugou-landing:is(.tracking-tight),
+.wugou-landing .tracking-tight {
+  letter-spacing: var(--tracking-tight);
+  --wg-tracking: var(--tracking-tight)
+}
+.wugou-landing:is(.tracking-wide),
+.wugou-landing .tracking-wide {
+  letter-spacing: var(--tracking-wide);
+  --wg-tracking: var(--tracking-wide)
+}
+.wugou-landing:is(.tracking-wider),
+.wugou-landing .tracking-wider {
+  letter-spacing: var(--tracking-wider);
+  --wg-tracking: var(--tracking-wider)
+}
+.wugou-landing:is(.tracking-widest),
+.wugou-landing .tracking-widest {
+  letter-spacing: var(--tracking-widest);
+  --wg-tracking: var(--tracking-widest)
+}
+.wugou-landing:is(.break-words),
+.wugou-landing .break-words {
+  overflow-wrap: break-word
+}
+.wugou-landing:is(.whitespace-nowrap),
+.wugou-landing .whitespace-nowrap {
+  white-space: nowrap
+}
+.wugou-landing:is(.whitespace-pre-wrap),
+.wugou-landing .whitespace-pre-wrap {
+  white-space: pre-wrap
+}
+.wugou-landing:is(.text-amber-600),
+.wugou-landing .text-amber-600 {
+  color: var(--color-amber-600)
+}
+.wugou-landing:is(.text-amber-700),
+.wugou-landing .text-amber-700 {
+  color: var(--color-amber-700)
+}
+.wugou-landing:is(.text-background),
+.wugou-landing .text-background {
+  color: var(--background)
+}
+.wugou-landing:is(.text-blue-500),
+.wugou-landing .text-blue-500 {
+  color: var(--color-blue-500)
+}
+.wugou-landing:is(.text-blue-600),
+.wugou-landing .text-blue-600 {
+  color: var(--color-blue-600)
+}
+.wugou-landing:is(.text-destructive),
+.wugou-landing .text-destructive {
+  color: var(--destructive)
+}
+.wugou-landing:is(.text-emerald-500\/70),
+.wugou-landing .text-emerald-500\/70 {
+  color: #00bb7fb3
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.text-emerald-500\/70),
+.wugou-landing .text-emerald-500\/70 {
+  color: color-mix(in oklab, var(--color-emerald-500) 70%, transparent)
+}
+}
+.wugou-landing:is(.text-emerald-600),
+.wugou-landing .text-emerald-600 {
+  color: var(--color-emerald-600)
+}
+.wugou-landing:is(.text-foreground),
+.wugou-landing .text-foreground {
+  color: var(--foreground)
+}
+.wugou-landing:is(.text-foreground\/30),
+.wugou-landing .text-foreground\/30 {
+  color: var(--foreground)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.text-foreground\/30),
+.wugou-landing .text-foreground\/30 {
+  color: color-mix(in oklab, var(--foreground) 30%, transparent)
+}
+}
+.wugou-landing:is(.text-foreground\/40),
+.wugou-landing .text-foreground\/40 {
+  color: var(--foreground)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.text-foreground\/40),
+.wugou-landing .text-foreground\/40 {
+  color: color-mix(in oklab, var(--foreground) 40%, transparent)
+}
+}
+.wugou-landing:is(.text-foreground\/55),
+.wugou-landing .text-foreground\/55 {
+  color: var(--foreground)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.text-foreground\/55),
+.wugou-landing .text-foreground\/55 {
+  color: color-mix(in oklab, var(--foreground) 55%, transparent)
+}
+}
+.wugou-landing:is(.text-foreground\/70),
+.wugou-landing .text-foreground\/70 {
+  color: var(--foreground)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.text-foreground\/70),
+.wugou-landing .text-foreground\/70 {
+  color: color-mix(in oklab, var(--foreground) 70%, transparent)
+}
+}
+.wugou-landing:is(.text-foreground\/75),
+.wugou-landing .text-foreground\/75 {
+  color: var(--foreground)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.text-foreground\/75),
+.wugou-landing .text-foreground\/75 {
+  color: color-mix(in oklab, var(--foreground) 75%, transparent)
+}
+}
+.wugou-landing:is(.text-foreground\/80),
+.wugou-landing .text-foreground\/80 {
+  color: var(--foreground)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.text-foreground\/80),
+.wugou-landing .text-foreground\/80 {
+  color: color-mix(in oklab, var(--foreground) 80%, transparent)
+}
+}
+.wugou-landing:is(.text-muted-foreground),
+.wugou-landing .text-muted-foreground {
+  color: var(--muted-foreground)
+}
+.wugou-landing:is(.text-muted-foreground\/40),
+.wugou-landing .text-muted-foreground\/40 {
+  color: var(--muted-foreground)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.text-muted-foreground\/40),
+.wugou-landing .text-muted-foreground\/40 {
+  color: color-mix(in oklab, var(--muted-foreground) 40%, transparent)
+}
+}
+.wugou-landing:is(.text-muted-foreground\/45),
+.wugou-landing .text-muted-foreground\/45 {
+  color: var(--muted-foreground)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.text-muted-foreground\/45),
+.wugou-landing .text-muted-foreground\/45 {
+  color: color-mix(in oklab, var(--muted-foreground) 45%, transparent)
+}
+}
+.wugou-landing:is(.text-muted-foreground\/50),
+.wugou-landing .text-muted-foreground\/50 {
+  color: var(--muted-foreground)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.text-muted-foreground\/50),
+.wugou-landing .text-muted-foreground\/50 {
+  color: color-mix(in oklab, var(--muted-foreground) 50%, transparent)
+}
+}
+.wugou-landing:is(.text-muted-foreground\/60),
+.wugou-landing .text-muted-foreground\/60 {
+  color: var(--muted-foreground)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.text-muted-foreground\/60),
+.wugou-landing .text-muted-foreground\/60 {
+  color: color-mix(in oklab, var(--muted-foreground) 60%, transparent)
+}
+}
+.wugou-landing:is(.text-muted-foreground\/80),
+.wugou-landing .text-muted-foreground\/80 {
+  color: var(--muted-foreground)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.text-muted-foreground\/80),
+.wugou-landing .text-muted-foreground\/80 {
+  color: color-mix(in oklab, var(--muted-foreground) 80%, transparent)
+}
+}
+.wugou-landing:is(.text-popover-foreground),
+.wugou-landing .text-popover-foreground {
+  color: var(--popover-foreground)
+}
+.wugou-landing:is(.text-primary-foreground),
+.wugou-landing .text-primary-foreground {
+  color: var(--primary-foreground)
+}
+.wugou-landing:is(.text-sky-700),
+.wugou-landing .text-sky-700 {
+  color: var(--color-sky-700)
+}
+.wugou-landing:is(.text-transparent),
+.wugou-landing .text-transparent {
+  color: #0000
+}
+.wugou-landing:is(.text-violet-600),
+.wugou-landing .text-violet-600 {
+  color: var(--color-violet-600)
+}
+.wugou-landing:is(.text-white),
+.wugou-landing .text-white {
+  color: var(--color-white)
+}
+.wugou-landing:is(.uppercase),
+.wugou-landing .uppercase {
+  text-transform: uppercase
+}
+.wugou-landing:is(.tabular-nums),
+.wugou-landing .tabular-nums {
+  font-variant-numeric: var(--wg-ordinal, ) var(--wg-slashed-zero, ) var(--wg-numeric-figure, ) var(--wg-numeric-spacing, ) var(--wg-numeric-fraction, );
+  --wg-numeric-spacing: tabular-nums
+}
+.wugou-landing:is(.opacity-0),
+.wugou-landing .opacity-0 {
+  opacity: 0
+}
+.wugou-landing:is(.opacity-20),
+.wugou-landing .opacity-20 {
+  opacity: .2
+}
+.wugou-landing:is(.opacity-25),
+.wugou-landing .opacity-25 {
+  opacity: .25
+}
+.wugou-landing:is(.opacity-100),
+.wugou-landing .opacity-100 {
+  opacity: 1
+}
+.wugou-landing:is(.opacity-\[0\.08\]),
+.wugou-landing .opacity-\[0\.08\] {
+  opacity: .08
+}
+.wugou-landing:is(.shadow-\[0_0_8px_rgba\(16\,185\,129\,0\.45\)\]),
+.wugou-landing .shadow-\[0_0_8px_rgba\(16\,185\,129\,0\.45\)\] {
+  box-shadow: var(--wg-inset-shadow), var(--wg-inset-ring-shadow), var(--wg-ring-offset-shadow), var(--wg-ring-shadow), var(--wg-shadow);
+  --wg-shadow: 0 0 8px var(--wg-shadow-color,#10b98173)
+}
+.wugou-landing:is(.shadow-\[0_1px_2\.5px_rgba\(0\,0\,0\,0\.01\)\]),
+.wugou-landing .shadow-\[0_1px_2\.5px_rgba\(0\,0\,0\,0\.01\)\] {
+  box-shadow: var(--wg-inset-shadow), var(--wg-inset-ring-shadow), var(--wg-ring-offset-shadow), var(--wg-ring-shadow), var(--wg-shadow);
+  --wg-shadow: 0 1px 2.5px var(--wg-shadow-color,#00000003)
+}
+.wugou-landing:is(.shadow-\[0_2px_16px_-6px_rgba\(0\,0\,0\,0\.08\)\,0_0_0_0\.5px_rgba\(0\,0\,0\,0\.02\)\]),
+.wugou-landing .shadow-\[0_2px_16px_-6px_rgba\(0\,0\,0\,0\.08\)\,0_0_0_0\.5px_rgba\(0\,0\,0\,0\.02\)\] {
+  box-shadow: var(--wg-inset-shadow), var(--wg-inset-ring-shadow), var(--wg-ring-offset-shadow), var(--wg-ring-shadow), var(--wg-shadow);
+  --wg-shadow: 0 2px 16px -6px var(--wg-shadow-color,#00000014), 0 0 0 .5px var(--wg-shadow-color,#00000005)
+}
+.wugou-landing:is(.shadow-\[0_20px_50px_-25px_rgba\(15\,23\,42\,0\.18\)\]),
+.wugou-landing .shadow-\[0_20px_50px_-25px_rgba\(15\,23\,42\,0\.18\)\] {
+  box-shadow: var(--wg-inset-shadow), var(--wg-inset-ring-shadow), var(--wg-ring-offset-shadow), var(--wg-ring-shadow), var(--wg-shadow);
+  --wg-shadow: 0 20px 50px -25px var(--wg-shadow-color,#0f172a2e)
+}
+.wugou-landing:is(.shadow-md),
+.wugou-landing .shadow-md {
+  box-shadow: var(--wg-inset-shadow), var(--wg-inset-ring-shadow), var(--wg-ring-offset-shadow), var(--wg-ring-shadow), var(--wg-shadow);
+  --wg-shadow: 0 4px 6px -1px var(--wg-shadow-color,#0000001a), 0 2px 4px -2px var(--wg-shadow-color,#0000001a)
+}
+.wugou-landing:is(.ring-1),
+.wugou-landing .ring-1 {
+  box-shadow: var(--wg-inset-shadow), var(--wg-inset-ring-shadow), var(--wg-ring-offset-shadow), var(--wg-ring-shadow), var(--wg-shadow);
+  --wg-ring-shadow: var(--wg-ring-inset, ) 0 0 0 calc(1px + var(--wg-ring-offset-width)) var(--wg-ring-color,currentcolor)
+}
+.wugou-landing:is(.ring-\[0\.5px\]),
+.wugou-landing .ring-\[0\.5px\] {
+  box-shadow: var(--wg-inset-shadow), var(--wg-inset-ring-shadow), var(--wg-ring-offset-shadow), var(--wg-ring-shadow), var(--wg-shadow);
+  --wg-ring-shadow: var(--wg-ring-inset, ) 0 0 0 calc(.5px + var(--wg-ring-offset-width)) var(--wg-ring-color,currentcolor)
+}
+.wugou-landing:is(.ring-border\/50),
+.wugou-landing .ring-border\/50 {
+  --wg-ring-color: var(--border)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.ring-border\/50),
+.wugou-landing .ring-border\/50 {
+  --wg-ring-color: color-mix(in oklab, var(--border) 50%, transparent)
+}
+}
+.wugou-landing:is(.ring-foreground\/10),
+.wugou-landing .ring-foreground\/10 {
+  --wg-ring-color: var(--foreground)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.ring-foreground\/10),
+.wugou-landing .ring-foreground\/10 {
+  --wg-ring-color: color-mix(in oklab, var(--foreground) 10%, transparent)
+}
+}
+.wugou-landing:is(.outline-hidden),
+.wugou-landing .outline-hidden {
+  outline-style: none;
+  --wg-outline-style: none
+}
+@media (forced-colors:active) {
+.wugou-landing:is(.outline-hidden),
+.wugou-landing .outline-hidden {
+  outline-offset: 2px;
+  outline: 2px solid #0000
+}
+}
+.wugou-landing:is(.backdrop-blur-2xl),
+.wugou-landing .backdrop-blur-2xl {
+  -webkit-backdrop-filter: var(--wg-backdrop-blur, ) var(--wg-backdrop-brightness, ) var(--wg-backdrop-contrast, ) var(--wg-backdrop-grayscale, ) var(--wg-backdrop-hue-rotate, ) var(--wg-backdrop-invert, ) var(--wg-backdrop-opacity, ) var(--wg-backdrop-saturate, ) var(--wg-backdrop-sepia, );
+  backdrop-filter: var(--wg-backdrop-blur, ) var(--wg-backdrop-brightness, ) var(--wg-backdrop-contrast, ) var(--wg-backdrop-grayscale, ) var(--wg-backdrop-hue-rotate, ) var(--wg-backdrop-invert, ) var(--wg-backdrop-opacity, ) var(--wg-backdrop-saturate, ) var(--wg-backdrop-sepia, );
+  --wg-backdrop-blur: blur(var(--blur-2xl))
+}
+.wugou-landing:is(.backdrop-blur-sm),
+.wugou-landing .backdrop-blur-sm {
+  -webkit-backdrop-filter: var(--wg-backdrop-blur, ) var(--wg-backdrop-brightness, ) var(--wg-backdrop-contrast, ) var(--wg-backdrop-grayscale, ) var(--wg-backdrop-hue-rotate, ) var(--wg-backdrop-invert, ) var(--wg-backdrop-opacity, ) var(--wg-backdrop-saturate, ) var(--wg-backdrop-sepia, );
+  backdrop-filter: var(--wg-backdrop-blur, ) var(--wg-backdrop-brightness, ) var(--wg-backdrop-contrast, ) var(--wg-backdrop-grayscale, ) var(--wg-backdrop-hue-rotate, ) var(--wg-backdrop-invert, ) var(--wg-backdrop-opacity, ) var(--wg-backdrop-saturate, ) var(--wg-backdrop-sepia, );
+  --wg-backdrop-blur: blur(var(--blur-sm))
+}
+.wugou-landing:is(.backdrop-blur-xs),
+.wugou-landing .backdrop-blur-xs {
+  -webkit-backdrop-filter: var(--wg-backdrop-blur, ) var(--wg-backdrop-brightness, ) var(--wg-backdrop-contrast, ) var(--wg-backdrop-grayscale, ) var(--wg-backdrop-hue-rotate, ) var(--wg-backdrop-invert, ) var(--wg-backdrop-opacity, ) var(--wg-backdrop-saturate, ) var(--wg-backdrop-sepia, );
+  backdrop-filter: var(--wg-backdrop-blur, ) var(--wg-backdrop-brightness, ) var(--wg-backdrop-contrast, ) var(--wg-backdrop-grayscale, ) var(--wg-backdrop-hue-rotate, ) var(--wg-backdrop-invert, ) var(--wg-backdrop-opacity, ) var(--wg-backdrop-saturate, ) var(--wg-backdrop-sepia, );
+  --wg-backdrop-blur: blur(var(--blur-xs))
+}
+.wugou-landing:is(.transition-all),
+.wugou-landing .transition-all {
+  transition-property: all;
+  transition-timing-function: var(--wg-ease,var(--default-transition-timing-function));
+  transition-duration: var(--wg-duration,var(--default-transition-duration))
+}
+.wugou-landing:is(.transition-colors),
+.wugou-landing .transition-colors {
+  transition-property: color,background-color,border-color,outline-color,text-decoration-color,fill,stroke,--wg-gradient-from,--wg-gradient-via,--wg-gradient-to;
+  transition-timing-function: var(--wg-ease,var(--default-transition-timing-function));
+  transition-duration: var(--wg-duration,var(--default-transition-duration))
+}
+.wugou-landing:is(.transition-opacity),
+.wugou-landing .transition-opacity {
+  transition-property: opacity;
+  transition-timing-function: var(--wg-ease,var(--default-transition-timing-function));
+  transition-duration: var(--wg-duration,var(--default-transition-duration))
+}
+.wugou-landing:is(.transition-transform),
+.wugou-landing .transition-transform {
+  transition-property: transform,translate,scale,rotate;
+  transition-timing-function: var(--wg-ease,var(--default-transition-timing-function));
+  transition-duration: var(--wg-duration,var(--default-transition-duration))
+}
+.wugou-landing:is(.duration-100),
+.wugou-landing .duration-100 {
+  transition-duration: .1s;
+  --wg-duration: .1s
+}
+.wugou-landing:is(.duration-200),
+.wugou-landing .duration-200 {
+  transition-duration: .2s;
+  --wg-duration: .2s
+}
+.wugou-landing:is(.duration-300),
+.wugou-landing .duration-300 {
+  transition-duration: .3s;
+  --wg-duration: .3s
+}
+.wugou-landing:is(.duration-500),
+.wugou-landing .duration-500 {
+  transition-duration: .5s;
+  --wg-duration: .5s
+}
+.wugou-landing:is(.duration-700),
+.wugou-landing .duration-700 {
+  transition-duration: .7s;
+  --wg-duration: .7s
+}
+.wugou-landing:is(.ease-\[cubic-bezier\(0\.16\,1\,0\.3\,1\)\]),
+.wugou-landing .ease-\[cubic-bezier\(0\.16\,1\,0\.3\,1\)\] {
+  transition-timing-function: cubic-bezier(.16,1,.3,1);
+  --wg-ease: cubic-bezier(.16,1,.3,1)
+}
+.wugou-landing:is(.will-change-\[transform\,opacity\]),
+.wugou-landing .will-change-\[transform\,opacity\] {
+  will-change: transform,opacity
+}
+.wugou-landing:is(.outline-none),
+.wugou-landing .outline-none {
+  outline-style: none;
+  --wg-outline-style: none
+}
+.wugou-landing:is(.select-none),
+.wugou-landing .select-none {
+  -webkit-user-select: none;
+  user-select: none
+}
+@media (hover:hover) {
+.wugou-landing:is(.group-hover\:translate-x-0\.5:is(:where(.group):hover *)),
+.wugou-landing .group-hover\:translate-x-0\.5:is(:where(.group):hover *) {
+  translate: var(--wg-translate-x) var(--wg-translate-y);
+  --wg-translate-x: calc(var(--spacing) * .5);
+  transform: none
+}
+.wugou-landing:is(.group-hover\:scale-105:is(:where(.group):hover *)),
+.wugou-landing .group-hover\:scale-105:is(:where(.group):hover *) {
+  scale: var(--wg-scale-x) var(--wg-scale-y);
+  --wg-scale-x: 105%;
+  --wg-scale-y: 105%;
+  --wg-scale-z: 105%;
+  transform: none
+}
+.wugou-landing:is(.group-hover\:text-foreground:is(:where(.group):hover *)),
+.wugou-landing .group-hover\:text-foreground:is(:where(.group):hover *) {
+  color: var(--foreground)
+}
+}
+@media (hover:hover) {
+.wugou-landing:is(.hover\:scale-\[1\.02\]:hover),
+.wugou-landing .hover\:scale-\[1\.02\]:hover {
+  scale: 1.02;
+  transform: none
+}
+.wugou-landing:is(.hover\:border-blue-500\/30:hover),
+.wugou-landing .hover\:border-blue-500\/30:hover {
+  border-color: #3080ff4d
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.hover\:border-blue-500\/30:hover),
+.wugou-landing .hover\:border-blue-500\/30:hover {
+  border-color: color-mix(in oklab, var(--color-blue-500) 30%, transparent)
+}
+}
+.wugou-landing:is(.hover\:border-border:hover),
+.wugou-landing .hover\:border-border:hover {
+  border-color: var(--border)
+}
+.wugou-landing:is(.hover\:bg-blue-500\/5:hover),
+.wugou-landing .hover\:bg-blue-500\/5:hover {
+  background-color: #3080ff0d
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.hover\:bg-blue-500\/5:hover),
+.wugou-landing .hover\:bg-blue-500\/5:hover {
+  background-color: color-mix(in oklab, var(--color-blue-500) 5%, transparent)
+}
+}
+.wugou-landing:is(.hover\:bg-muted:hover),
+.wugou-landing .hover\:bg-muted:hover {
+  background-color: var(--muted)
+}
+.wugou-landing:is(.hover\:bg-muted\/20:hover),
+.wugou-landing .hover\:bg-muted\/20:hover {
+  background-color: var(--muted)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.hover\:bg-muted\/20:hover),
+.wugou-landing .hover\:bg-muted\/20:hover {
+  background-color: color-mix(in oklab, var(--muted) 20%, transparent)
+}
+}
+.wugou-landing:is(.hover\:bg-muted\/30:hover),
+.wugou-landing .hover\:bg-muted\/30:hover {
+  background-color: var(--muted)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.hover\:bg-muted\/30:hover),
+.wugou-landing .hover\:bg-muted\/30:hover {
+  background-color: color-mix(in oklab, var(--muted) 30%, transparent)
+}
+}
+.wugou-landing:is(.hover\:bg-muted\/50:hover),
+.wugou-landing .hover\:bg-muted\/50:hover {
+  background-color: var(--muted)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.hover\:bg-muted\/50:hover),
+.wugou-landing .hover\:bg-muted\/50:hover {
+  background-color: color-mix(in oklab, var(--muted) 50%, transparent)
+}
+}
+.wugou-landing:is(.hover\:text-foreground:hover),
+.wugou-landing .hover\:text-foreground:hover,
+.wugou-landing:is(.hover\:text-foreground\/70:hover),
+.wugou-landing .hover\:text-foreground\/70:hover {
+  color: var(--foreground)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.hover\:text-foreground\/70:hover),
+.wugou-landing .hover\:text-foreground\/70:hover {
+  color: color-mix(in oklab, var(--foreground) 70%, transparent)
+}
+}
+.wugou-landing:is(.hover\:opacity-90:hover),
+.wugou-landing .hover\:opacity-90:hover {
+  opacity: .9
+}
+}
+.wugou-landing:is(.focus\:bg-accent:focus),
+.wugou-landing .focus\:bg-accent:focus {
+  background-color: var(--accent)
+}
+.wugou-landing:is(.focus\:text-accent-foreground:focus),
+.wugou-landing .focus\:text-accent-foreground:focus {
+  color: var(--accent-foreground)
+}
+.wugou-landing:is(:is(.not-data-\[variant\=destructive\]\:focus\:\*\*\:text-accent-foreground:not([data-variant=destructive]):focus *)),
+.wugou-landing :is(.not-data-\[variant\=destructive\]\:focus\:\*\*\:text-accent-foreground:not([data-variant=destructive]):focus *) {
+  color: var(--accent-foreground)
+}
+.wugou-landing:is(.focus-visible\:border-ring:focus-visible),
+.wugou-landing .focus-visible\:border-ring:focus-visible {
+  border-color: var(--ring)
+}
+.wugou-landing:is(.focus-visible\:ring-3:focus-visible),
+.wugou-landing .focus-visible\:ring-3:focus-visible,
+.wugou-landing:is(.focus-visible\:ring-\[3px\]:focus-visible),
+.wugou-landing .focus-visible\:ring-\[3px\]:focus-visible {
+  box-shadow: var(--wg-inset-shadow), var(--wg-inset-ring-shadow), var(--wg-ring-offset-shadow), var(--wg-ring-shadow), var(--wg-shadow);
+  --wg-ring-shadow: var(--wg-ring-inset, ) 0 0 0 calc(3px + var(--wg-ring-offset-width)) var(--wg-ring-color,currentcolor)
+}
+.wugou-landing:is(.focus-visible\:ring-destructive\/20:focus-visible),
+.wugou-landing .focus-visible\:ring-destructive\/20:focus-visible {
+  --wg-ring-color: var(--destructive)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.focus-visible\:ring-destructive\/20:focus-visible),
+.wugou-landing .focus-visible\:ring-destructive\/20:focus-visible {
+  --wg-ring-color: color-mix(in oklab, var(--destructive) 20%, transparent)
+}
+}
+.wugou-landing:is(.focus-visible\:ring-ring\/50:focus-visible),
+.wugou-landing .focus-visible\:ring-ring\/50:focus-visible {
+  --wg-ring-color: var(--ring)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.focus-visible\:ring-ring\/50:focus-visible),
+.wugou-landing .focus-visible\:ring-ring\/50:focus-visible {
+  --wg-ring-color: color-mix(in oklab, var(--ring) 50%, transparent)
+}
+}
+.wugou-landing:is(.active\:opacity-80:active),
+.wugou-landing .active\:opacity-80:active {
+  opacity: .8
+}
+.wugou-landing:is(.active\:not-aria-\[haspopup\]\:translate-y-px:active:not([aria-haspopup])),
+.wugou-landing .active\:not-aria-\[haspopup\]\:translate-y-px:active:not([aria-haspopup]) {
+  translate: var(--wg-translate-x) var(--wg-translate-y);
+  --wg-translate-y: 1px;
+  transform: none
+}
+.wugou-landing:is(.disabled\:pointer-events-none:disabled),
+.wugou-landing .disabled\:pointer-events-none:disabled {
+  pointer-events: none
+}
+.wugou-landing:is(.disabled\:opacity-50:disabled),
+.wugou-landing .disabled\:opacity-50:disabled {
+  opacity: .5
+}
+.wugou-landing:is(.aria-expanded\:bg-muted[aria-expanded=true]),
+.wugou-landing .aria-expanded\:bg-muted[aria-expanded=true] {
+  background-color: var(--muted)
+}
+.wugou-landing:is(.aria-expanded\:text-foreground[aria-expanded=true]),
+.wugou-landing .aria-expanded\:text-foreground[aria-expanded=true] {
+  color: var(--foreground)
+}
+.wugou-landing:is(.data-\[side\=bottom\]\:slide-in-from-top-2[data-side=bottom]),
+.wugou-landing .data-\[side\=bottom\]\:slide-in-from-top-2[data-side=bottom] {
+  --wg-enter-translate-y: calc(2*var(--spacing)*-1)
+}
+.wugou-landing:is(.data-\[variant\=destructive\]\:text-destructive[data-variant=destructive]),
+.wugou-landing .data-\[variant\=destructive\]\:text-destructive[data-variant=destructive] {
+  color: var(--destructive)
+}
+.wugou-landing:is(.data-\[variant\=destructive\]\:focus\:bg-destructive\/10[data-variant=destructive]:focus),
+.wugou-landing .data-\[variant\=destructive\]\:focus\:bg-destructive\/10[data-variant=destructive]:focus {
+  background-color: var(--destructive)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.data-\[variant\=destructive\]\:focus\:bg-destructive\/10[data-variant=destructive]:focus),
+.wugou-landing .data-\[variant\=destructive\]\:focus\:bg-destructive\/10[data-variant=destructive]:focus {
+  background-color: color-mix(in oklab, var(--destructive) 10%, transparent)
+}
+}
+.wugou-landing:is(.data-\[variant\=destructive\]\:focus\:text-destructive[data-variant=destructive]:focus),
+.wugou-landing .data-\[variant\=destructive\]\:focus\:text-destructive[data-variant=destructive]:focus {
+  color: var(--destructive)
+}
+@media (min-width:40rem) {
+.wugou-landing:is(.sm\:flex-row),
+.wugou-landing .sm\:flex-row {
+  flex-direction: row
+}
+.wugou-landing:is(.sm\:justify-start),
+.wugou-landing .sm\:justify-start {
+  justify-content: flex-start
+}
+.wugou-landing:is(.sm\:gap-1\.5),
+.wugou-landing .sm\:gap-1\.5 {
+  gap: calc(var(--spacing) * 1.5)
+}
+.wugou-landing:is(.sm\:px-3),
+.wugou-landing .sm\:px-3 {
+  padding-inline: calc(var(--spacing) * 3)
+}
+.wugou-landing:is(.sm\:pr-3),
+.wugou-landing .sm\:pr-3 {
+  padding-right: calc(var(--spacing) * 3)
+}
+.wugou-landing:is(.sm\:text-right),
+.wugou-landing .sm\:text-right {
+  text-align: right
+}
+.wugou-landing:is(.sm\:text-xs),
+.wugou-landing .sm\:text-xs {
+  font-size: var(--text-xs);
+  line-height: var(--wg-leading,var(--text-xs--line-height))
+}
+}
+@media (min-width:48rem) {
+.wugou-landing:is(.md\:col-span-1),
+.wugou-landing .md\:col-span-1 {
+  grid-column: span 1/span 1
+}
+.wugou-landing:is(.md\:col-span-2),
+.wugou-landing .md\:col-span-2 {
+  grid-column: span 2/span 2
+}
+.wugou-landing:is(.md\:mb-20),
+.wugou-landing .md\:mb-20 {
+  margin-bottom: calc(var(--spacing) * 20)
+}
+.wugou-landing:is(.md\:grid-cols-3),
+.wugou-landing .md\:grid-cols-3 {
+  grid-template-columns: repeat(3,minmax(0,1fr))
+}
+.wugou-landing:is(.md\:grid-cols-4),
+.wugou-landing .md\:grid-cols-4 {
+  grid-template-columns: repeat(4,minmax(0,1fr))
+}
+.wugou-landing:is(.md\:flex-row),
+.wugou-landing .md\:flex-row {
+  flex-direction: row
+}
+.wugou-landing:is(.md\:gap-12),
+.wugou-landing .md\:gap-12 {
+  gap: calc(var(--spacing) * 12)
+}
+.wugou-landing:is(.md\:gap-16),
+.wugou-landing .md\:gap-16 {
+  gap: calc(var(--spacing) * 16)
+}
+.wugou-landing:is(.md\:p-8),
+.wugou-landing .md\:p-8 {
+  padding: calc(var(--spacing) * 8)
+}
+.wugou-landing:is(.md\:px-6),
+.wugou-landing .md\:px-6 {
+  padding-inline: calc(var(--spacing) * 6)
+}
+.wugou-landing:is(.md\:py-12),
+.wugou-landing .md\:py-12 {
+  padding-block: calc(var(--spacing) * 12)
+}
+.wugou-landing:is(.md\:py-16),
+.wugou-landing .md\:py-16 {
+  padding-block: calc(var(--spacing) * 16)
+}
+.wugou-landing:is(.md\:py-32),
+.wugou-landing .md\:py-32 {
+  padding-block: calc(var(--spacing) * 32)
+}
+.wugou-landing:is(.md\:pt-32),
+.wugou-landing .md\:pt-32 {
+  padding-top: calc(var(--spacing) * 32)
+}
+.wugou-landing:is(.md\:pb-24),
+.wugou-landing .md\:pb-24 {
+  padding-bottom: calc(var(--spacing) * 24)
+}
+.wugou-landing:is(.md\:text-3xl),
+.wugou-landing .md\:text-3xl {
+  font-size: var(--text-3xl);
+  line-height: var(--wg-leading,var(--text-3xl--line-height))
+}
+.wugou-landing:is(.md\:text-4xl),
+.wugou-landing .md\:text-4xl {
+  font-size: var(--text-4xl);
+  line-height: var(--wg-leading,var(--text-4xl--line-height))
+}
+.wugou-landing:is(.md\:text-base),
+.wugou-landing .md\:text-base {
+  font-size: var(--text-base);
+  line-height: var(--wg-leading,var(--text-base--line-height))
+}
+.wugou-landing:is(.md\:text-\[15px\]),
+.wugou-landing .md\:text-\[15px\] {
+  font-size: 15px
+}
+}
+@media (min-width:64rem) {
+.wugou-landing:is(.lg\:pointer-events-none),
+.wugou-landing .lg\:pointer-events-none {
+  pointer-events: none
+}
+.wugou-landing:is(.lg\:col-span-6),
+.wugou-landing .lg\:col-span-6 {
+  grid-column: span 6/span 6
+}
+.wugou-landing:is(.lg\:mt-0),
+.wugou-landing .lg\:mt-0 {
+  margin-top: 0
+}
+.wugou-landing:is(.lg\:flex),
+.wugou-landing .lg\:flex {
+  display: flex
+}
+.wugou-landing:is(.lg\:hidden),
+.wugou-landing .lg\:hidden {
+  display: none
+}
+.wugou-landing:is(.lg\:min-w-36),
+.wugou-landing .lg\:min-w-36 {
+  min-width: calc(var(--spacing) * 36)
+}
+.wugou-landing:is(.lg\:grid-cols-12),
+.wugou-landing .lg\:grid-cols-12 {
+  grid-template-columns: repeat(12,minmax(0,1fr))
+}
+.wugou-landing:is(.lg\:gap-8),
+.wugou-landing .lg\:gap-8 {
+  gap: calc(var(--spacing) * 8)
+}
+.wugou-landing:is(.lg\:pt-36),
+.wugou-landing .lg\:pt-36 {
+  padding-top: calc(var(--spacing) * 36)
+}
+.wugou-landing:is(.lg\:pb-28),
+.wugou-landing .lg\:pb-28 {
+  padding-bottom: calc(var(--spacing) * 28)
+}
+}
+.wugou-landing:is(.dark\:border-amber-400:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:border-amber-400:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  border-color: var(--color-amber-400)
+}
+.wugou-landing:is(.dark\:border-blue-400:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:border-blue-400:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  border-color: var(--color-blue-400)
+}
+.wugou-landing:is(.dark\:border-emerald-400:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:border-emerald-400:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  border-color: var(--color-emerald-400)
+}
+.wugou-landing:is(.dark\:border-input:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:border-input:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  border-color: var(--input)
+}
+.wugou-landing:is(.dark\:border-violet-400:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:border-violet-400:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  border-color: var(--color-violet-400)
+}
+.wugou-landing:is(.dark\:border-white\/\[0\.04\]:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:border-white\/\[0\.04\]:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  border-color: #ffffff0a
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.dark\:border-white\/\[0\.04\]:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:border-white\/\[0\.04\]:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  border-color: color-mix(in oklab, var(--color-white) 4%, transparent)
+}
+}
+.wugou-landing:is(.dark\:border-white\/\[0\.05\]:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:border-white\/\[0\.05\]:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  border-color: #ffffff0d
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.dark\:border-white\/\[0\.05\]:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:border-white\/\[0\.05\]:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  border-color: color-mix(in oklab, var(--color-white) 5%, transparent)
+}
+}
+.wugou-landing:is(.dark\:border-white\/\[0\.06\]:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:border-white\/\[0\.06\]:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  border-color: #ffffff0f
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.dark\:border-white\/\[0\.06\]:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:border-white\/\[0\.06\]:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  border-color: color-mix(in oklab, var(--color-white) 6%, transparent)
+}
+}
+.wugou-landing:is(.dark\:bg-\[\#0b0f17\]\/95:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:bg-\[\#0b0f17\]\/95:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  background-color: #0b0f17f2;
+  background-color: lab(4.23512% .0159889 -5.21019/.95)
+}
+.wugou-landing:is(.dark\:bg-amber-400\/10:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:bg-amber-400\/10:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  background-color: #fcbb001a
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.dark\:bg-amber-400\/10:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:bg-amber-400\/10:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  background-color: color-mix(in oklab, var(--color-amber-400) 10%, transparent)
+}
+}
+.wugou-landing:is(.dark\:bg-blue-400\/10:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:bg-blue-400\/10:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  background-color: #54a2ff1a
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.dark\:bg-blue-400\/10:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:bg-blue-400\/10:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  background-color: color-mix(in oklab, var(--color-blue-400) 10%, transparent)
+}
+}
+.wugou-landing:is(.dark\:bg-destructive\/20:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:bg-destructive\/20:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  background-color: var(--destructive)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.dark\:bg-destructive\/20:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:bg-destructive\/20:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  background-color: color-mix(in oklab, var(--destructive) 20%, transparent)
+}
+}
+.wugou-landing:is(.dark\:bg-emerald-400\/10:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:bg-emerald-400\/10:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  background-color: #00d2941a
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.dark\:bg-emerald-400\/10:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:bg-emerald-400\/10:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  background-color: color-mix(in oklab, var(--color-emerald-400) 10%, transparent)
+}
+}
+.wugou-landing:is(.dark\:bg-input\/30:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:bg-input\/30:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  background-color: var(--input)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.dark\:bg-input\/30:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:bg-input\/30:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  background-color: color-mix(in oklab, var(--input) 30%, transparent)
+}
+}
+.wugou-landing:is(.dark\:bg-violet-400\/10:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:bg-violet-400\/10:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  background-color: #a685ff1a
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.dark\:bg-violet-400\/10:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:bg-violet-400\/10:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  background-color: color-mix(in oklab, var(--color-violet-400) 10%, transparent)
+}
+}
+.wugou-landing:is(.dark\:bg-white\/\[0\.02\]:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:bg-white\/\[0\.02\]:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  background-color: #ffffff05
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.dark\:bg-white\/\[0\.02\]:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:bg-white\/\[0\.02\]:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  background-color: color-mix(in oklab, var(--color-white) 2%, transparent)
+}
+}
+.wugou-landing:is(.dark\:bg-white\/\[0\.015\]:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:bg-white\/\[0\.015\]:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  background-color: #ffffff04
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.dark\:bg-white\/\[0\.015\]:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:bg-white\/\[0\.015\]:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  background-color: color-mix(in oklab, var(--color-white) 1.5%, transparent)
+}
+}
+.wugou-landing:is(.dark\:text-amber-300:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:text-amber-300:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  color: var(--color-amber-300)
+}
+.wugou-landing:is(.dark\:text-amber-400:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:text-amber-400:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  color: var(--color-amber-400)
+}
+.wugou-landing:is(.dark\:text-blue-400:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:text-blue-400:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  color: var(--color-blue-400)
+}
+.wugou-landing:is(.dark\:text-emerald-400:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:text-emerald-400:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  color: var(--color-emerald-400)
+}
+.wugou-landing:is(.dark\:text-sky-300:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:text-sky-300:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  color: var(--color-sky-300)
+}
+.wugou-landing:is(.dark\:text-violet-300:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:text-violet-300:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  color: var(--color-violet-300)
+}
+.wugou-landing:is(.dark\:text-violet-400:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:text-violet-400:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  color: var(--color-violet-400)
+}
+.wugou-landing:is(.dark\:opacity-\[0\.08\]:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:opacity-\[0\.08\]:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  opacity: .08
+}
+.wugou-landing:is(.dark\:opacity-\[0\.12\]:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:opacity-\[0\.12\]:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  opacity: .12
+}
+.wugou-landing:is(.dark\:shadow-\[0_2px_16px_-6px_rgba\(0\,0\,0\,0\.4\)\]:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:shadow-\[0_2px_16px_-6px_rgba\(0\,0\,0\,0\.4\)\]:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  box-shadow: var(--wg-inset-shadow), var(--wg-inset-ring-shadow), var(--wg-ring-offset-shadow), var(--wg-ring-shadow), var(--wg-shadow);
+  --wg-shadow: 0 2px 16px -6px var(--wg-shadow-color,#0006)
+}
+.wugou-landing:is(.dark\:shadow-\[0_20px_60px_-25px_rgba\(0\,0\,0\,0\.7\)\]:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)),
+.wugou-landing .dark\:shadow-\[0_20px_60px_-25px_rgba\(0\,0\,0\,0\.7\)\]:is(.wugou-landing.is-dark,.wugou-landing.is-dark *) {
+  box-shadow: var(--wg-inset-shadow), var(--wg-inset-ring-shadow), var(--wg-ring-offset-shadow), var(--wg-ring-shadow), var(--wg-shadow);
+  --wg-shadow: 0 20px 60px -25px var(--wg-shadow-color,#000000b3)
+}
+@media (hover:hover) {
+.wugou-landing:is(.dark\:hover\:bg-input\/50:is(.wugou-landing.is-dark,.wugou-landing.is-dark *):hover),
+.wugou-landing .dark\:hover\:bg-input\/50:is(.wugou-landing.is-dark,.wugou-landing.is-dark *):hover {
+  background-color: var(--input)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.dark\:hover\:bg-input\/50:is(.wugou-landing.is-dark,.wugou-landing.is-dark *):hover),
+.wugou-landing .dark\:hover\:bg-input\/50:is(.wugou-landing.is-dark,.wugou-landing.is-dark *):hover {
+  background-color: color-mix(in oklab, var(--input) 50%, transparent)
+}
+}
+.wugou-landing:is(.dark\:hover\:bg-muted\/50:is(.wugou-landing.is-dark,.wugou-landing.is-dark *):hover),
+.wugou-landing .dark\:hover\:bg-muted\/50:is(.wugou-landing.is-dark,.wugou-landing.is-dark *):hover {
+  background-color: var(--muted)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.dark\:hover\:bg-muted\/50:is(.wugou-landing.is-dark,.wugou-landing.is-dark *):hover),
+.wugou-landing .dark\:hover\:bg-muted\/50:is(.wugou-landing.is-dark,.wugou-landing.is-dark *):hover {
+  background-color: color-mix(in oklab, var(--muted) 50%, transparent)
+}
+}
+}
+.wugou-landing:is(.dark\:focus-visible\:ring-destructive\/40:is(.wugou-landing.is-dark,.wugou-landing.is-dark *):focus-visible),
+.wugou-landing .dark\:focus-visible\:ring-destructive\/40:is(.wugou-landing.is-dark,.wugou-landing.is-dark *):focus-visible {
+  --wg-ring-color: var(--destructive)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.dark\:focus-visible\:ring-destructive\/40:is(.wugou-landing.is-dark,.wugou-landing.is-dark *):focus-visible),
+.wugou-landing .dark\:focus-visible\:ring-destructive\/40:is(.wugou-landing.is-dark,.wugou-landing.is-dark *):focus-visible {
+  --wg-ring-color: color-mix(in oklab, var(--destructive) 40%, transparent)
+}
+}
+.wugou-landing:is(.dark\:data-\[variant\=destructive\]\:focus\:bg-destructive\/20:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)[data-variant=destructive]:focus),
+.wugou-landing .dark\:data-\[variant\=destructive\]\:focus\:bg-destructive\/20:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)[data-variant=destructive]:focus {
+  background-color: var(--destructive)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.dark\:data-\[variant\=destructive\]\:focus\:bg-destructive\/20:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)[data-variant=destructive]:focus),
+.wugou-landing .dark\:data-\[variant\=destructive\]\:focus\:bg-destructive\/20:is(.wugou-landing.is-dark,.wugou-landing.is-dark *)[data-variant=destructive]:focus {
+  background-color: color-mix(in oklab, var(--destructive) 20%, transparent)
+}
+}
+.wugou-landing:is(.\[\&_svg\]\:pointer-events-none svg),
+.wugou-landing .\[\&_svg\]\:pointer-events-none svg {
+  pointer-events: none
+}
+.wugou-landing:is(.\[\&_svg\]\:shrink-0 svg),
+.wugou-landing .\[\&_svg\]\:shrink-0 svg {
+  flex-shrink: 0
+}
+.wugou-landing:is(.\[\&_svg\:not\(\[class\*\=\'size-\'\]\)\]\:size-3\.5 svg:not([class*=size-])),
+.wugou-landing .\[\&_svg\:not\(\[class\*\=\'size-\'\]\)\]\:size-3\.5 svg:not([class*=size-]) {
+  width: calc(var(--spacing) * 3.5);
+  height: calc(var(--spacing) * 3.5)
+}
+.wugou-landing:is(.\[\&_svg\:not\(\[class\*\=\'size-\'\]\)\]\:size-4 svg:not([class*=size-])),
+.wugou-landing .\[\&_svg\:not\(\[class\*\=\'size-\'\]\)\]\:size-4 svg:not([class*=size-]) {
+  width: calc(var(--spacing) * 4);
+  height: calc(var(--spacing) * 4)
+}
+@media (hover:hover) {
+.wugou-landing:is(.\[a\]\:hover\:bg-destructive\/20:is(a):hover),
+.wugou-landing .\[a\]\:hover\:bg-destructive\/20:is(a):hover {
+  background-color: var(--destructive)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.\[a\]\:hover\:bg-destructive\/20:is(a):hover),
+.wugou-landing .\[a\]\:hover\:bg-destructive\/20:is(a):hover {
+  background-color: color-mix(in oklab, var(--destructive) 20%, transparent)
+}
+}
+.wugou-landing:is(.\[a\]\:hover\:bg-primary\/80:is(a):hover),
+.wugou-landing .\[a\]\:hover\:bg-primary\/80:is(a):hover {
+  background-color: var(--primary)
+}
+@supports (color:color-mix(in lab, red, red)) {
+.wugou-landing:is(.\[a\]\:hover\:bg-primary\/80:is(a):hover),
+.wugou-landing .\[a\]\:hover\:bg-primary\/80:is(a):hover {
+  background-color: color-mix(in oklab, var(--primary) 80%, transparent)
+}
+}
+}
+.wugou-landing:is(:is(.data-\[variant\=destructive\]\:\*\:\[svg\]\:text-destructive[data-variant=destructive]>*):is(svg)),
+.wugou-landing :is(.data-\[variant\=destructive\]\:\*\:\[svg\]\:text-destructive[data-variant=destructive]>*):is(svg) {
+  color: var(--destructive)
+}
+.wugou-landing:is(.\[\&\>svg\]\:pointer-events-none>svg),
+.wugou-landing .\[\&\>svg\]\:pointer-events-none>svg {
+  pointer-events: none
+}
+.wugou-landing:is(.\[\&\>svg\]\:size-3\!>svg),
+.wugou-landing .\[\&\>svg\]\:size-3\!>svg {
+  width: calc(var(--spacing) * 3)!important;
+  height: calc(var(--spacing) * 3)!important
+}
+.wugou-landing:is(.landing-animate-fade-up),
+.wugou-landing .landing-animate-fade-up {
+  animation: .6s cubic-bezier(.16,1,.3,1) both wugou-landing-fade-up
+}
+.wugou-landing:is(.landing-animate-scale-in),
+.wugou-landing .landing-animate-scale-in {
+  animation: .6s cubic-bezier(.16,1,.3,1) both wugou-landing-scale-in
+}
+@media (prefers-reduced-motion:reduce) {
+.wugou-landing:is(.landing-animate-fade-up),
+.wugou-landing .landing-animate-fade-up,
+.wugou-landing:is(.landing-animate-scale-in),
+.wugou-landing .landing-animate-scale-in {
+  opacity: 1!important;
+  animation: none!important;
+  transform: none!important
+}
+}
+.wugou-landing:is(.tabular-nums),
+.wugou-landing .tabular-nums {
+  font-variant-numeric: tabular-nums
+}
+@property --wg-translate-x {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0
+}
+@property --wg-translate-y {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0
+}
+@property --wg-scale-x {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1
+}
+@property --wg-scale-y {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1
+}
+@property --wg-space-y-reverse {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0
+}
+@property --wg-space-x-reverse {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0
+}
+@property --wg-border-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid
+}
+@property --wg-gradient-stops {
+  syntax: "*";
+  inherits: false
+}
+@property --wg-gradient-via-stops {
+  syntax: "*";
+  inherits: false
+}
+@property --wg-gradient-position {
+  syntax: "*";
+  inherits: false
+}
+@property --wg-gradient-from {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #0000
+}
+@property --wg-gradient-from-position {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 0%
+}
+@property --wg-gradient-to {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #0000
+}
+@property --wg-gradient-to-position {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 100%
+}
+@property --wg-gradient-via {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #0000
+}
+@property --wg-gradient-via-position {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 50%
+}
+@property --wg-leading {
+  syntax: "*";
+  inherits: false
+}
+@property --wg-ordinal {
+  syntax: "*";
+  inherits: false
+}
+@property --wg-slashed-zero {
+  syntax: "*";
+  inherits: false
+}
+@property --wg-numeric-figure {
+  syntax: "*";
+  inherits: false
+}
+@property --wg-numeric-spacing {
+  syntax: "*";
+  inherits: false
+}
+@property --wg-numeric-fraction {
+  syntax: "*";
+  inherits: false
+}
+@property --wg-inset-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000
+}
+@property --wg-inset-ring-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000
+}
+@property --wg-ring-offset-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000
+}
+@property --wg-ring-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000
+}
+@property --wg-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000
+}
+@property --wg-shadow-color {
+  syntax: "*";
+  inherits: false
+}
+@property --wg-ring-inset {
+  syntax: "*";
+  inherits: false
+}
+@property --wg-ring-offset-width {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0
+}
+@property --wg-ring-color {
+  syntax: "*";
+  inherits: false
+}
+@property --wg-backdrop-blur {
+  syntax: "*";
+  inherits: false
+}
+@property --wg-backdrop-brightness {
+  syntax: "*";
+  inherits: false
+}
+@property --wg-backdrop-contrast {
+  syntax: "*";
+  inherits: false
+}
+@property --wg-backdrop-grayscale {
+  syntax: "*";
+  inherits: false
+}
+@property --wg-backdrop-hue-rotate {
+  syntax: "*";
+  inherits: false
+}
+@property --wg-backdrop-invert {
+  syntax: "*";
+  inherits: false
+}
+@property --wg-backdrop-opacity {
+  syntax: "*";
+  inherits: false
+}
+@property --wg-backdrop-saturate {
+  syntax: "*";
+  inherits: false
+}
+@property --wg-backdrop-sepia {
+  syntax: "*";
+  inherits: false
+}
+@property --wg-ease {
+  syntax: "*";
+  inherits: false
+}
+@property --wg-duration {
+  syntax: "*";
+  inherits: false
+}
+@keyframes wugou-landing-fade-up {
+0% {
+  opacity: 0;
+  transform: translateY(24px)
+}
+to {
+  opacity: 1;
+  transform: translateY(0)
+}
+}
+@keyframes wugou-landing-scale-in {
+0% {
+  opacity: 0;
+  transform: scale(.95)
+}
+to {
+  opacity: 1;
+  transform: scale(1)
+}
+}

@@ -7,6 +7,7 @@ import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import type { Toast, ToastType, PublicSettings } from '@/types'
 import { i18n } from '@/i18n'
+import { DEFAULT_SITE_NAME, DEFAULT_SITE_LOGO, resolveSiteName, resolveSiteLogo } from '@/utils/branding'
 import {
   checkUpdates as checkUpdatesAPI,
   type VersionInfo,
@@ -26,8 +27,8 @@ export const useAppStore = defineStore('app', () => {
   // Public settings cache state
   const publicSettingsLoaded = ref<boolean>(false)
   const publicSettingsLoading = ref<boolean>(false)
-  const siteName = ref<string>('Sub2API')
-  const siteLogo = ref<string>('')
+  const siteName = ref<string>(DEFAULT_SITE_NAME)
+  const siteLogo = ref<string>(DEFAULT_SITE_LOGO)
   const siteVersion = ref<string>('')
   const contactInfo = ref<string>('')
   const apiBaseUrl = ref<string>('')
@@ -289,18 +290,24 @@ export const useAppStore = defineStore('app', () => {
   /**
    * Apply settings to store state (internal helper to avoid code duplication)
    */
-  function applySettings(config: PublicSettings): void {
-    if (typeof window !== 'undefined') {
-      window.__APP_CONFIG__ = { ...config }
+  function applySettings(config: PublicSettings): PublicSettings {
+    const normalizedConfig = {
+      ...config,
+      site_name: resolveSiteName(config.site_name),
+      site_logo: resolveSiteLogo(config.site_logo),
     }
-    cachedPublicSettings.value = config
-    siteName.value = config.site_name || 'Sub2API'
-    siteLogo.value = config.site_logo || ''
+    if (typeof window !== 'undefined') {
+      window.__APP_CONFIG__ = { ...normalizedConfig }
+    }
+    cachedPublicSettings.value = normalizedConfig
+    siteName.value = normalizedConfig.site_name
+    siteLogo.value = normalizedConfig.site_logo
     siteVersion.value = config.version || ''
     contactInfo.value = config.contact_info || ''
     apiBaseUrl.value = config.api_base_url || ''
     docUrl.value = config.doc_url || ''
     publicSettingsLoaded.value = true
+    return normalizedConfig
   }
 
   /**
@@ -395,8 +402,7 @@ export const useAppStore = defineStore('app', () => {
 
     const request = apiRequest
       .then((data) => {
-        applySettings(data)
-        return data
+        return applySettings(data)
       })
       .catch((error) => {
         console.error('Failed to fetch public settings:', error)
