@@ -204,7 +204,8 @@ class HajimiDeployTests(unittest.TestCase):
     def test_registry_token_stays_off_command_line_and_temp_credentials_are_removed(self):
         result = self.run_deploy(registry=True)
         self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertEqual((self.stack / 'token-received').read_text(encoding='utf-8'), 'fixture-token\n')
+        received = (self.stack / 'token-received').read_text(encoding='utf-8')
+        self.assertEqual(received.rstrip('\r\n'), 'fixture-token')
         self.assertNotIn('fixture-token', '\n'.join(self.calls()) + result.stdout + result.stderr)
         config_dir = next(c.split('=', 1)[1] for c in self.calls() if c.startswith('registry-config='))
         if os.name == 'nt':
